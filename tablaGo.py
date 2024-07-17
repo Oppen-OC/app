@@ -21,7 +21,7 @@ def create_excel_with_text(output_excel_file, sheet_name, cell, text):
 '''
 
 # Rellena las casillas de la Ficha GO
-def update_excel_with_text(input_excel_file, sheet_name):
+def update_excel(input_excel_file, sheet_name):
     # Load an existing Workbook
     wb = load_workbook(input_excel_file)
     if sheet_name in wb.sheetnames:
@@ -40,12 +40,12 @@ def update_excel_with_text(input_excel_file, sheet_name):
     print(f'Text inserted into {input_excel_file}')
 
 # Example usage:
-output_excel_file = 'fichaTest.xlsx'
-sheet_name = 'A1 Ficha GO'
+#output_excel_file = 'fichaTest.xlsx'
+#sheet_name = 'A1 Ficha GO'
 
 
 # Create a new Excel file and insert text into a cell
-update_excel_with_text(output_excel_file, sheet_name)
+#update_excel_with_text(output_excel_file, sheet_name)
 #create_excel_with_text(output_excel_file, sheet_name, cell, text)
 
 # Update an existing Excel file and insert text

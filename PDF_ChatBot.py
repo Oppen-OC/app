@@ -9,6 +9,9 @@ from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
 from htmlTemplates import css, bot_template, user_template
 from langchain.llms import HuggingFaceHub
+from PIL import Image
+from tablaGo import update_excel
+
 
 def get_pdf_text(pdf_docs):
     text = ""
@@ -66,8 +69,8 @@ def handle_userinput(user_question):
 
 def main():
     load_dotenv()
-    st.set_page_config(page_title="Chat with multiple PDFs",
-                       page_icon=":books:")
+    st.set_page_config(page_title="IA Chat",
+                       page_icon=Image.open('img\proyeco_logo.jpg'))
     st.write(css, unsafe_allow_html=True)
 
     if "conversation" not in st.session_state:
@@ -75,17 +78,20 @@ def main():
     if "chat_history" not in st.session_state:
         st.session_state.chat_history = None
 
-    st.header("Chat with multiple PDFs :books:")
-    user_question = st.text_input("Ask a question about your documents:")
+    st.header("Pregunta sobre tu PDF")
+    user_question = st.text_input("Escribe aquí")
     if user_question:
         handle_userinput(user_question)
 
+    st.session_state.q1_disabled = True
+
     with st.sidebar:
-        st.subheader("Your documents")
+        st.subheader("Documentos")
         pdf_docs = st.file_uploader(
-            "Upload your PDFs here and click on 'Process'", accept_multiple_files=True)
-        if st.button("Process"):
-            with st.spinner("Processing"):
+            "Sube aqui tus archivos y presiona 'Procesar'", accept_multiple_files=True)
+        if st.button("Procesar"):
+            st.session_state.q1_disabled = False
+            with st.spinner("Procesando"):
                 # get pdf text
                 raw_text = get_pdf_text(pdf_docs)
 
@@ -98,7 +104,10 @@ def main():
                 # create conversation chain
                 st.session_state.conversation = get_conversation_chain(
                     vectorstore)
-
+        if st.button("Generar Ficha Go",help ="Subir primero el archivo pdf para poder generar la ficha" , disabled=st.session_state.q1_disabled):
+            st.write("ole")
+            st.download_button(update_excel())
+            
 
 if __name__ == '__main__':
     main()
