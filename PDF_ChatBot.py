@@ -70,7 +70,7 @@ def handle_userinput(user_question):
 def main():
     load_dotenv()
     st.set_page_config(page_title="IA Chat",
-                       page_icon=Image.open('img\proyeco_logo.jpg'))
+                       page_icon=Image.open('img\\proyeco_logo.jpg'))
     st.write(css, unsafe_allow_html=True)
 
     if "conversation" not in st.session_state:
