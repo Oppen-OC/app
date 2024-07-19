@@ -2,13 +2,12 @@ import streamlit as st
 from dotenv import load_dotenv
 from PyPDF2 import PdfReader
 from langchain.text_splitter import CharacterTextSplitter
-from langchain.embeddings import OpenAIEmbeddings, HuggingFaceInstructEmbeddings
-from langchain.vectorstores import FAISS
-from langchain.chat_models import ChatOpenAI
+from langchain_openai import OpenAIEmbeddings
+from langchain_community.vectorstores import FAISS
+from langchain_openai import ChatOpenAI
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
 from htmlTemplates import css, bot_template, user_template
-from langchain.llms import HuggingFaceHub
 from PIL import Image
 from tablaGo import update_excel
 
@@ -28,7 +27,7 @@ def get_text_chunks(text):
         chunk_overlap=200,
         length_function=len
     )
-    chunks = text_splitter.split_text(text)
+    chunks = text_splitter.split_text(text) 
     return chunks
 
 
@@ -80,12 +79,11 @@ def main():
     st.write(css, unsafe_allow_html=True)
     
     st.header("Pregunta sobre tu PDF")
-    user_question = st.text_input(disabled=not st.session_state.button_clicked, placeholder = "Escribe aquí")
+    user_question = st.text_input(label = "Texto", disabled=not st.session_state.button_clicked, placeholder = "Escribe aquí")
     
  
     if user_question:
         handle_userinput(user_question)
-        user_question = ""
         
     if "conversation" not in st.session_state:
         st.session_state.conversation = None
