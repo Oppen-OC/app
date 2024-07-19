@@ -12,7 +12,6 @@ from langchain.llms import HuggingFaceHub
 from PIL import Image
 from tablaGo import update_excel
 
-
 def get_pdf_text(pdf_docs):
     text = ""
     for pdf in pdf_docs:
@@ -69,45 +68,63 @@ def handle_userinput(user_question):
 
 def main():
     load_dotenv()
-    st.set_page_config(page_title="IA Chat",
-                       page_icon=Image.open('img\\proyeco_logo.jpg'))
-    st.write(css, unsafe_allow_html=True)
+    
+    if "button_clicked" not in st.session_state:
+        st.session_state.button_clicked = False
+    if "file_uploaded" not in st.session_state:
+        st.session_state.file_uploaded = False
+    if 'user_input' not in st.session_state:
+        st.session_state.user_input = ""
 
+    st.set_page_config(page_title="IA Chat", page_icon=Image.open('img\\proyeco_logo.jpg'))
+    st.write(css, unsafe_allow_html=True)
+    
+    st.header("Pregunta sobre tu PDF")
+    user_question = st.text_input(disabled=not st.session_state.button_clicked, placeholder = "Escribe aquí")
+    
+ 
+    if user_question:
+        handle_userinput(user_question)
+        user_question = ""
+        
     if "conversation" not in st.session_state:
         st.session_state.conversation = None
     if "chat_history" not in st.session_state:
         st.session_state.chat_history = None
 
-    st.header("Pregunta sobre tu PDF")
-    user_question = st.text_input("Escribe aquí")
-    if user_question:
-        handle_userinput(user_question)
-
-    st.session_state.q1_disabled = True
-
     with st.sidebar:
         st.subheader("Documentos")
-        pdf_docs = st.file_uploader(
-            "Sube aqui tus archivos y presiona 'Procesar'", accept_multiple_files=True)
+        pdf_docs = st.file_uploader("Sube aquí tus archivos y presiona 'Procesar'", accept_multiple_files=True)
+
+        if pdf_docs:
+            st.session_state.file_uploaded = True
+        else:
+            st.session_state.file_uploaded = False
+        
         if st.button("Procesar"):
-            st.session_state.q1_disabled = False
+            if st.session_state.file_uploaded:
+                st.session_state.button_clicked = True
+                st.experimental_rerun()  # Rerun the script to update the UI
+            else:
+                st.warning("Por favor suba un documento antes de procesar")
+
+        if st.session_state.file_uploaded and st.session_state.button_clicked:
             with st.spinner("Procesando"):
-                # get pdf text
+                # Get pdf text
                 raw_text = get_pdf_text(pdf_docs)
 
-                # get the text chunks
+                # Get the text chunks
                 text_chunks = get_text_chunks(raw_text)
 
-                # create vector store
+                # Create vector store
                 vectorstore = get_vectorstore(text_chunks)
 
-                # create conversation chain
-                st.session_state.conversation = get_conversation_chain(
-                    vectorstore)
-        if st.button("Generar Ficha Go",help ="Subir primero el archivo pdf para poder generar la ficha" , disabled=st.session_state.q1_disabled):
+                # Create conversation chain
+                st.session_state.conversation = get_conversation_chain(vectorstore)
+
+        if st.button("Generar Ficha Go", help="Subir primero el archivo pdf para poder generar la ficha", disabled=not st.session_state.button_clicked):
             st.write("ole")
             st.download_button(update_excel())
-            
 
 if __name__ == '__main__':
     main()
