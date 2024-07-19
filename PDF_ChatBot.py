@@ -74,21 +74,21 @@ def main():
         st.session_state.file_uploaded = False
     if 'user_input' not in st.session_state:
         st.session_state.user_input = ""
+    if "conversation" not in st.session_state:
+        st.session_state.conversation = None
+    if "chat_history" not in st.session_state:
+        st.session_state.chat_history = None
 
     st.set_page_config(page_title="IA Chat", page_icon=Image.open('img\\proyeco_logo.jpg'))
     st.write(css, unsafe_allow_html=True)
     
     st.header("Pregunta sobre tu PDF")
     user_question = st.text_input(label = "Texto", disabled=not st.session_state.button_clicked, placeholder = "Escribe aquí")
-    
+
  
-    if user_question:
+    if user_question is not None:
         handle_userinput(user_question)
-        
-    if "conversation" not in st.session_state:
-        st.session_state.conversation = None
-    if "chat_history" not in st.session_state:
-        st.session_state.chat_history = None
+
 
     with st.sidebar:
         st.subheader("Documentos")
