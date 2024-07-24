@@ -1,4 +1,6 @@
 from openpyxl import Workbook, load_workbook
+from io import BytesIO
+
 
 '''
 # Function to create a new Excel file with specified text in a cell
@@ -28,7 +30,7 @@ def update_excel(input_excel_file, sheet_name):
         ws = wb[sheet_name]
     else:
         ws = wb.create_sheet(sheet_name)
-    
+
     # Inserta texto en las casillas importantes
     for i in [3, 4, 5, 6, 9, 10, 12, 13, 15, 17, 19, 21, 23, 24, 26, 27, 29, 31, 33, 35]:
         cellB = 'B' + str(i)
@@ -36,7 +38,12 @@ def update_excel(input_excel_file, sheet_name):
         ws[cellB] = "TESTING"
     
     # Save the workbook
-    wb.save(input_excel_file[:-5] +"Res.xlsx")
+    output = BytesIO()
+    wb.save(output)
+    output.seek(0)
+    
+    return output
+    #wb.save(input_excel_file[:-5] +"Res.xlsx")
     print(f'Text inserted into {input_excel_file}')
 
 # Example usage:
@@ -45,7 +52,6 @@ def update_excel(input_excel_file, sheet_name):
 
 
 # Create a new Excel file and insert text into a cell
-#update_excel_with_text(output_excel_file, sheet_name)
 #create_excel_with_text(output_excel_file, sheet_name, cell, text)
 
 # Update an existing Excel file and insert text
