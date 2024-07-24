@@ -9,7 +9,7 @@ from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
 from htmlTemplates import css, bot_template, user_template
 from PIL import Image
-from tablaGo import update_excel
+from tablaGo import tablaGo
 
 def get_pdf_text(pdf_docs):
     text = ""
@@ -41,10 +41,12 @@ def get_conversation_chain(vectorstore):
         llm=llm,
         retriever=vectorstore.as_retriever(),
         memory=memory
+        system_message="Eres parte de un programa cuyo objetivo es responder preguntas en un formato específico sobre documentos de licitaciones"
     )
     return conversation_chain
 
 def handle_userinput(user_question):
+    
     if st.session_state.conversation is None:
         if st.session_state.button_clicked:
             st.error("Conversation object is None. Cannot handle user input.")
@@ -61,6 +63,10 @@ def handle_userinput(user_question):
 
 def main():
     load_dotenv()
+
+    tg = tablaGo("ficha.xlsx",
+                 [1],
+                 "prompts.txt") 
 
     if "button_clicked" not in st.session_state:
         st.session_state.button_clicked = False
@@ -94,7 +100,7 @@ def main():
         if st.button("Procesar"):
             if st.session_state.file_uploaded:
                 st.session_state.button_clicked = True
-                st.experimental_rerun()
+                #st.experimental_rerun() NO SE PARA QUE ERA
             else:
                 st.warning("Por favor suba un documento antes de procesar")
 
@@ -106,11 +112,22 @@ def main():
                 st.session_state.conversation = get_conversation_chain(vectorstore)
                 print(get_conversation_chain(vectorstore))
 
-        if st.button("Generar Ficha Go", help="Subir primero el archivo pdf para poder generar la ficha", disabled=not st.session_state.button_clicked):
-            st.write("ole")
-            result = update_excel("ficha.xlsx", "A1 Resumen")
+        if st.button("Generar Ficha Go", 
+                     help="Subir primero el archivo pdf para poder generar la ficha", 
+                     disabled=not st.session_state.button_clicked):
+            
+            #Accede al documento de querys y llama al update_excel
+            for query in tg.prompts:
+                response = st.session_state.conversation({'question': query})['answer']
+                result = tg.update_excel("ficha.xlsx", "A1 Resumen", response)
+            
             if result is not None:  # Ensure result is appropriate for download_button
-                st.download_button("Descargar Ficha Go", result)
+               st.download_button(
+                    label="Descargar Ficha Go", 
+                    data=result, 
+                    file_name="FichaGo.xlsx", 
+                    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                )
 
 if __name__ == '__main__':
     main()
