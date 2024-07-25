@@ -10,6 +10,7 @@ from langchain.chains import ConversationalRetrievalChain
 from htmlTemplates import css, bot_template, user_template
 from PIL import Image
 from tablaGo import tablaGo
+import json
 
 def get_pdf_text(pdf_docs):
     text = ""
@@ -35,31 +36,39 @@ def get_vectorstore(text_chunks):
     return vectorstore
 
 def get_conversation_chain(vectorstore):
-    llm = ChatOpenAI()
+    
+    with open('instructions.json') as f:
+        extra_body = json.load(f)
+    
+    llm = ChatOpenAI(extra_body=extra_body)
     memory = ConversationBufferMemory(memory_key='chat_history', return_messages=True)
+    
+    memory.chat_memory.add_ai_message("Eres de un programa informatico que lee licitaciones del estado y responde preguntas en un formato especifico.")
+    memory.chat_memory.add_ai_message("")
+    
     conversation_chain = ConversationalRetrievalChain.from_llm(
         llm=llm,
         retriever=vectorstore.as_retriever(),
-        memory=memory
-        system_message="Eres parte de un programa cuyo objetivo es responder preguntas en un formato específico sobre documentos de licitaciones"
+        memory=memory    
     )
     return conversation_chain
 
 def handle_userinput(user_question):
-    
+        
     if st.session_state.conversation is None:
-        if st.session_state.button_clicked:
+        if st.session_state.button_clicked and st.session_state.chat_history and len(st.session_state.chat_history) > 2:
             st.error("Conversation object is None. Cannot handle user input.")
         return
 
     response = st.session_state.conversation({'question': user_question})
     st.session_state.chat_history = response['chat_history']
 
-    for i, message in enumerate(st.session_state.chat_history):
-        if i % 2 == 0:
-            st.write(user_template.replace("{{MSG}}", message.content), unsafe_allow_html=True)
-        else:
-            st.write(bot_template.replace("{{MSG}}", message.content), unsafe_allow_html=True)
+    if len(st.session_state.chat_history) > 1:
+        for i, message in enumerate(st.session_state.chat_history[2:]):
+            if i % 2 == 0:
+                st.write(user_template.replace("{{MSG}}", message.content), unsafe_allow_html=True)
+            else:
+                st.write(bot_template.replace("{{MSG}}", message.content), unsafe_allow_html=True)
 
 def main():
     load_dotenv()
@@ -76,6 +85,8 @@ def main():
         st.session_state.user_input = ""
     if "conversation" not in st.session_state:
         st.session_state.conversation = None
+    if "ficha" not in st.session_state:
+        st.session_state.ficha = None
     if "chat_history" not in st.session_state:
         st.session_state.chat_history = None
 
@@ -83,14 +94,14 @@ def main():
     st.write(css, unsafe_allow_html=True)
 
     st.header("Pregunta sobre tu PDF")
-    user_question = st.text_input(label="Texto", disabled=not st.session_state.button_clicked, placeholder="Escribe aquí")
+    user_question = st.text_input(label="Texto", disabled=not st.session_state.button_clicked, placeholder="Escribe aquí",key='widget')
 
     if user_question is not None:
         handle_userinput(user_question)
 
     with st.sidebar:
         st.subheader("Documentos")
-        pdf_docs = st.file_uploader("Sube aquí tus archivos y presiona 'Procesar'", accept_multiple_files=True)
+        pdf_docs = st.file_uploader("Sube aquí tus archivos y presiona 'Procesar'", accept_multiple_files=True, type  = "pdf")
 
         if pdf_docs:
             st.session_state.file_uploaded = True
@@ -100,7 +111,7 @@ def main():
         if st.button("Procesar"):
             if st.session_state.file_uploaded:
                 st.session_state.button_clicked = True
-                #st.experimental_rerun() NO SE PARA QUE ERA
+                st.experimental_rerun() #Sin esto no se actualiza el estado
             else:
                 st.warning("Por favor suba un documento antes de procesar")
 
@@ -117,8 +128,11 @@ def main():
                      disabled=not st.session_state.button_clicked):
             
             #Accede al documento de querys y llama al update_excel
+            
+            st.session_state.ficha = get_conversation_chain(vectorstore)
+            
             for query in tg.prompts:
-                response = st.session_state.conversation({'question': query})['answer']
+                response = st.session_state.ficha({'question': query})['answer']
                 result = tg.update_excel("ficha.xlsx", "A1 Resumen", response)
             
             if result is not None:  # Ensure result is appropriate for download_button
