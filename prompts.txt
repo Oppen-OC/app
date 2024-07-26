@@ -1,1 +1,16 @@
-¿Sobre que habla el documento?
+Quiero información exacta y precisa sobre el documento, entregame el titulo del documento, este suele encontrarse dentro del cuadro de caracteristicas
+Quiero información exacta y precisa sobre el documento, entregame el organismo o cliente del proyecto, suele encontrarse al principio del cuadro de caracteristicas
+Quiero información exacta y precisa sobre el documento, entregame el precio de referencia del cliente, este suele encontrarse en la secciñon de presupuesto del cuadro de caracteristicas
+Quiero información exacta y precisa sobre el documento, entregame el contenido del apartado de solvencia economica,  usualmente encontrado en el apartap de solvencia
+Quiero información exacta y precisa sobre el documento, entregame el contenido del apartado de solvencia tecnica, usualmente encontrado en el apartado de solvencia
+Quiero información exacta y precisa sobre el documento, entregame el contenido minimo necesario para el contrato, normalmente encontrado en el apartado de solvencia, el formato de respuesta tendra que enumerar cada recurso dentro del equipo
+Quiero información exacta y precisa sobre el documento, entregame la forma de pago del proyecto, suele encontrarse en el cuadro de caracteristicas dentro de presupuesto
+Responde unicamente con si o no, el contrato tiene plan de calidad?
+Responde unicamente con si o no, el contrato cumple la solvencia tecnica? suele encontrarse en el cuadro de caracteristicas en el area de solvencia
+En caso de cumplir con la solvencia tecnica, que socios o empresas colaboran? suele encontrarse en el cuadro de caracteristicas.
+Responde unicamente con si o no, la licitacion cumple ocn la rentabilidad? DONDE SE ENCUENTRA ESTO?
+Responde unicamente con si o no, la licitacion cumple con los criterios eticos? DONDE SE ENCUENTRA ESTO? 
+Indica cualquier motivo de rechazo DONDE SE ENCUENTRA ESTO
+En base a toda la información recabada, deberia presentarse la ficha go? DONDE SE ENCUENTRA ESTO?
+
+4, 5, 6, 12, 13, 15, 19, 21, 23, 24, 26, 28, 30, 32
