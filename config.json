@@ -2,20 +2,21 @@
     "version": "1.0",
     "description": "Configuration for an LLM that processes government tenders and responds to inquiries in a specific format.",
     "model": {
+      "version": "gpt-3.5-turbo",
       "name": "Proyeco Chatbot",
       "parameters": {
         "max_tokens": 1500,
-        "temperature": 0.2,
+        "temperature": 0.3,
         "top_p": 0.7,
         "frequency_penalty": 0,
         "presence_penalty": 0
       }
     },
     "system_messages": {
-      "startup_message": "Eres de un programa informatico que lee licitaciones del estado y responde preguntas en un formato especifico."
+      "startup_message": "Eres de un programa informatico que lee licitaciones del estado y responde preguntas en un formato especifico que ayuda a rellenar una ficha."
     },
     "user_instructions": {
-      "init_prompt": "Instrucciones para el usuario: Puede hacer preguntas sobre los contenidos de las licitaciones del estado. Asegúrese de formular preguntas claras y específicas."
+      "init_prompt": "Instrucciones para el usuario: Puede hacer preguntas sobre los contenidos de las licitaciones del estado. Asegurese de formular preguntas claras y específicas."
     },
     "response_formats": {
       "text": "{response}",
