@@ -2,7 +2,7 @@
     "version": "1.0",
     "description": "Configuration for an LLM that processes government tenders and responds to inquiries in a specific format.",
     "model": {
-      "version": "gpt-3.5-turbo",
+      "version": "gpt-4o",
       "name": "Proyeco Chatbot",
       "parameters": {
         "max_tokens": 1500,

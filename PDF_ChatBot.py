@@ -37,12 +37,12 @@ def get_vectorstore(text_chunks):
     embeddings = OpenAIEmbeddings(model="text-embedding-3-large")
     vectorstore = FAISS.from_texts(texts=text_chunks, embedding=embeddings)
     print(vectorstore.index.ntotal)
-    vectorstore.save_local("faiss_index")
+    vectorstore.save_local("faiss_index_DGC")
     return vectorstore
 
 def get_vectorstore_local():
     embeddings = OpenAIEmbeddings(model="text-embedding-3-large")
-    return FAISS.load_local("faiss_index", embeddings, allow_dangerous_deserialization=True)
+    return FAISS.load_local("faiss_index_DGC", embeddings, allow_dangerous_deserialization=True)
 
 def get_conversation_chain(vectorstore):
     
@@ -90,6 +90,7 @@ def handle_userinput(user_question):
     try:
         response = st.session_state.conversation({'question': user_question})
         st.session_state.chat_history = response['chat_history']
+        print("Conversacion subida")
             
     except AssertionError as e:
         st.error(f"AssertionError: {e}")
@@ -150,25 +151,20 @@ def main():
             if st.session_state.file_uploaded:
                 st.session_state.button_clicked = True
                 print("Procesar presionado")
-                #st.rerun() #Sin esto no se actualiza el estado
                 if st.session_state.vector_store is None:
-                    st.session_state.vector_store = get_vectorstore_local()
-                    st.session_state.conversation = get_conversation_chain(st.session_state.vector_store)
-                    print("GOT THE VECTOR STORE")
-                
+                    with st.spinner("Procesando"):
+                        #raw_text = get_pdf_text(pdf_docs)
+                        #text_chunks = get_text_chunks(raw_text)
+                        #st.session_state.vector_store = get_vectorstore(text_chunks)
+                        st.session_state.vector_store = get_vectorstore_local()
+                        print(st.session_state.conversation)
+                        st.session_state.conversation = get_conversation_chain(st.session_state.vector_store)
+                        print("GOT THE VECTOR STORE")
                 st.rerun()
 
             else:
                 st.warning("Por favor suba un documento antes de procesar")
                 print("FILE UPLOADED IS FALSE")
-
-
-        if st.session_state.file_uploaded and st.session_state.button_clicked:
-            with st.spinner("Procesando"):
-                #raw_text = get_pdf_text(pdf_docs)
-                #text_chunks = get_text_chunks(raw_text)
-                #st.session_state.vector_store = get_vectorstore(text_chunks)
-                print(st.session_state.conversation)
 
         if st.button("Generar Ficha Go", 
                      help="Subir primero el archivo pdf para poder generar la ficha", 
