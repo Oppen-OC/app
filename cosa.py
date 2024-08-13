@@ -1,38 +1,50 @@
-import os
-from dotenv import load_dotenv  # Assuming dotenv for environment variables
-from langchain_openai import ChatOpenAI, OpenAIEmbeddings
-from langchain import hub
-from langchain_chroma import Chroma
-from langchain_core.output_parsers import StrOutputParser
-from langchain_core.runnables import RunnablePassthrough
-from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain_community.document_loaders import PDFMinerLoader
-import streamlit as st  # Assuming streamlit for the web interface
-from PIL import Image  # For loading the image
-import bs4  # This is imported but not used in the script
-from xtx.htmlTemplates import css, bot_template, user_template
-from langchain_community.vectorstores import FAISS
-from langchain_core.prompts import ChatPromptTemplate
-from langchain.chains import create_retrieval_chain
-from langchain.chains.combine_documents import create_stuff_documents_chain
-from pdfminer.high_level import extract_text
-from pdf2image import convert_from_bytes
-from io import BytesIO
+import re
+import json
+import nltk
+import tablaGo
 import pytesseract
+import streamlit as st  
+from PIL import Image  
+from io import BytesIO
+from dotenv import load_dotenv
+from pdf2image import convert_from_bytes
+from pdfminer.high_level import extract_text
+from xtx.htmlTemplates import css, bot_template
+from langchain_core.messages import HumanMessage
+from langchain_community.vectorstores import FAISS
+from langchain.chains import create_retrieval_chain
+from langchain_openai import ChatOpenAI, OpenAIEmbeddings
+from langchain.chains import create_history_aware_retriever
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
+from langchain.chains.combine_documents import create_stuff_documents_chain
 
 
 # Load environment variables
 load_dotenv()
 
-# Initialize the language model
-llm = ChatOpenAI(model="gpt-4o-mini")
+with open('config.json') as f:
+    config = json.load(f)
+
+# Inicializa el LLM 
+
+model_params = config['model']['parameters']
+
+llm = ChatOpenAI(
+    model_name=config['model']['version'],
+    temperature=model_params['temperature'],
+    max_tokens=model_params['max_tokens'],
+    top_p=model_params['top_p'],
+    frequency_penalty=model_params['frequency_penalty'],
+    presence_penalty=model_params['presence_penalty'],
+)
+
 
 system_prompt = (
-    "Eres un programa que recibe licitaciones del estado y responde preguntas en base a ellas. "
-    "Si se se dice que respondas unicamente con si o no una pregunta, respondes unicamente con si o no "
-    "Si no conoces la respuesta a una preguta tienes que decirlo claramente "
+    "Eres un programa que recibe licitaciones de diferentes entidades, deberas responder todas las preguntas que se te hagan en base estos documentos, "
     "Todas las respuestas deben ser claras y concisas a menos de que se te diga lo contrario "
-    "Todas las respuestas tienen que estar basadas en el documento de licitacion"
+    "En caso de no saber la respuesta a una pregunta, responde con 'No lo se'"
+    "NUNCA hagas referencia a la pregunta dentro del prompt, unicamente responde con la información que dispongas"
     "\n\n"
     "{context}"
 )
@@ -40,9 +52,19 @@ system_prompt = (
 prompt = ChatPromptTemplate.from_messages(
     [
         ("system", system_prompt),
+        MessagesPlaceholder(variable_name="chat_history"),
         ("human", "{input}"),
     ]
 )
+
+#Recibe al retriever y devuelve otro retrieevr que toma en cuenta el historial
+def get_history(retriever):
+    history_aware_retriever = create_history_aware_retriever(
+        llm, retriever, prompt
+    )
+
+    return history_aware_retriever
+
 
 # Initialize the text splitter
 text_splitter = RecursiveCharacterTextSplitter(
@@ -88,16 +110,41 @@ def get_pdf_text(pdf_docs):
                 continue  # Skips if OCR fails
 
     if text:
-        # Write the extracted text to a file
-        with open("Output.txt", "w", encoding="utf-8") as text_file:
-            text_file.write(text)
 
+        text = normalizar(text)
+
+        # Write the extracted text to a file
+        # with open("Output.txt", "w", encoding="utf-8") as text_file:
+            # text_file.write(text)
 
     return text
 
+def normalizar(txt):
+
+    with open("stopwords.txt", 'r') as file: stopwords = file.read()
+
+    txt = txt.lower()
+
+    #Remueve puntuacion
+    txt = re.sub(r'[^\w\s.,]', '', txt)
+
+    #Tokeniza
+    nltk.download('punkt')
+    tokens = nltk.word_tokenize(txt, language='spanish')
+
+    #Remueve stopwords
+    tokens = [word for word in tokens if word not in stopwords]
+
+    # Se devuelve todo a string
+    processed_text = ' '.join(tokens)
+
+    # Handling extra whitespaces (should not be necessary after join)
+    processed_text = ' '.join(processed_text.split())
+    
+    return processed_text
+
 def get_text_chunks(text):
     text_splitter = RecursiveCharacterTextSplitter(
-        separators="\n",
         chunk_size=1000,
         chunk_overlap=200,
         length_function=len
@@ -108,18 +155,20 @@ def get_text_chunks(text):
 def get_vectorstore(text_chunks):
     embeddings = OpenAIEmbeddings(model="text-embedding-3-large")
     vectorstore = FAISS.from_texts(texts=text_chunks, embedding=embeddings)
-    vectorstore.save_local("ADIF")
+    print("SAVED")
+    vectorstore.save_local("Otro")
     return vectorstore
 
 def get_vectorstore_local():
     embeddings = OpenAIEmbeddings(model="text-embedding-3-large")
-    return FAISS.load_local("ADIF", embeddings, allow_dangerous_deserialization=True)
-
+    print("GOT LOCAL")
+    return FAISS.load_local("Otro", embeddings, allow_dangerous_deserialization=True)
 
 def get_prompt(input):
     prompt = ChatPromptTemplate.from_messages(
                     [
                         ("system", system_prompt),
+                        MessagesPlaceholder(variable_name="chat_history"),
                         ("human", "{input}"),
                     ]
                 )
@@ -135,6 +184,11 @@ def main():
         st.session_state.button_clicked = False
     if "rag_chain" not in st.session_state:
         st.session_state.rag_chain = None
+    if "chat_history" not in st.session_state:
+        st.session_state.chat_history = []
+    if "retriever" not in st.session_state:
+        st.session_state.retriever = None
+
 
     # Configuracion pagina streamlit
     st.set_page_config(page_title="IA Chat", page_icon=Image.open('img/proyeco_logo.jpg'))
@@ -147,7 +201,12 @@ def main():
         if st.session_state.button_clicked:
             rag_chain = st.session_state.rag_chain  # Get rag_chain from session state
             if rag_chain is not None:
-                response = rag_chain.invoke({"input": str(user_question)})
+                #response = rag_chain.invoke({"input": get_prompt(str(user_question)), 'chat_history': st.session_state.chat_history})
+                response = rag_chain.invoke({"input": str(user_question),'context': get_history(st.session_state.retriever), 'chat_history': st.session_state.chat_history})
+                # print(response)
+
+                st.session_state.chat_history.extend([HumanMessage(content=user_question), response["answer"]])
+                
                 st.write(bot_template.replace("{{MSG}}", response["answer"]), unsafe_allow_html=True)
             else:
                 st.warning("El rag_chain no está configurado correctamente. Por favor, procese los documentos nuevamente.")
@@ -163,7 +222,7 @@ def main():
                 st.session_state.button_clicked = True
 
                 with st.spinner("Procesando"):
-                    # Saca el texto del pdf
+                    # Saca el texto del pdff
                     raw_text = get_pdf_text(pdf_docs)
 
                     # Convierte el texto en chunks
@@ -171,22 +230,52 @@ def main():
 
                     # Consigue el vector de la base de datos
                     vectorstore = get_vectorstore(text_chunks)
+                    # vectorstore = get_vectorstore_local()
 
                     # Convierte al vector store en un retriever, esto facilita la recuperacion de datos
-                    retriever = vectorstore.as_retriever()
+                    retriever = vectorstore.as_retriever(k = 10)
+                    st.session_state.retriever = retriever
+                    print(retriever)
 
                     # Especifica el contexto antes de pasarselo al llm
                     question_answer_chain = create_stuff_documents_chain(llm, prompt)
 
                     # Propaga el contexto por toda la cadena
-                    rag_chain = create_retrieval_chain(retriever, question_answer_chain)  
+                    rag_chain = create_retrieval_chain(get_history(retriever), question_answer_chain)
                     st.session_state.rag_chain = rag_chain
 
                     print("Final del proceso")
 
                     st.rerun()
+
             else:
-                st.warning("Por favor suba un documento antes de procesar")
+                st.warning("Por favor, suba un documento antes de procesar")
+
+        if st.button("Generar ficha"):
+
+            with open("Output.txt", "w", encoding="utf-8") as text_file:
+                
+                if st.session_state.button_clicked == True:
+                    text_file.write("----------------------------------------------------------------------------------------------\n")
+                    tabla = tablaGo.tablaGo("ficha.xlsx","prompts.json")
+                    system_questions =  tabla.questions
+                    for key in system_questions.keys():
+                        for question in system_questions[key]:
+                            response = st.session_state.rag_chain.invoke({"input": str(question),'context': get_history(st.session_state.retriever), 'chat_history': st.session_state.chat_history})
+                            print(f"{key} | {question} | {response['answer']}")
+                            if tabla.contains_any_phrases(response['answer'], tabla.err):
+                                print("necesitamos otra")
+                            else:
+                                text_file.write(f"{key} | {question} | {response['answer']}\n")
+
+                                text_file.write("----------------------------------------------------------------------------------------------\n")
+                                break
+                    print("Holaaa")
+                
+                else:
+                    st.warning("Por favor, procese algun documento antes de generar la ficha")
 
 if __name__ == "__main__":
     main()
+
+    #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

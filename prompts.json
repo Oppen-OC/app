@@ -1,0 +1,86 @@
+{
+  "A1":{
+    "preguntas":{
+      "titulo":[
+        "Busca en el documento la palabra 'TÍTULO' y extrae el texto que aparece inmediatamente después.",
+        "Busca en el documento secciones numeradas, y localiza el subtítulo que contenga la palabra 'TÍTULO'. Extrae el contenido que sigue a ese subtítulo.",
+        "Identifica la sección del documento que menciona el 'Objeto del contrato'. Encuentra el subtítulo 'TÍTULO' dentro de esa sección y extrae el texto asociado.",
+        "En un documento oficial, encuentra la sección que inicia con la palabra 'TÍTULO' y que se describe con letras mayúsculas. Extrae todo el texto que se encuentre en esa sección hasta que aparezca un nuevo subtítulo o sección.",
+        "Localiza en el documento cualquier encabezado que esté escrito en mayúsculas y que contenga la palabra 'TÍTULO'. Extrae el texto que aparece inmediatamente después hasta que se encuentre otro encabezado similar."
+      ],
+      "organismo":[
+        "Busca en los pies de página del documento menciones a organismos oficiales o entidades responsables. Identifica y extrae el nombre del organismo que aparece en el pie de página.",
+        "Busca en el pie de página del documento cualquier referencia a 'emitido por', 'organismo', 'consejo', 'autoridad', 'administración' o términos similares. Extrae el nombre del organismo mencionado junto a estas palabras clave.",
+        "Localiza en el documento cualquier sección o pie de página que contenga las palabras 'Consejo de Administración', 'Ministerio', o 'Entidad Pública'. Extrae el nombre completo del organismo que aparece en estas secciones.",
+        "Revisa los textos del pie de página del documento en busca de menciones a entidades gubernamentales o públicas. Identifica y extrae el nombre del organismo que ha emitido la licitación.",
+        "Busca en el pie de página del documento menciones a entidades que incluyen términos como 'Consejo', 'Administración', 'Ministerio', o 'Alta Velocidad'. Extrae la información completa relacionada con el organismo que emite la licitación.",
+        "Identifica en el pie de página cualquier referencia cruzada que mencione al organismo encargado de la licitación. Extrae el nombre de dicho organismo y cualquier información relevante adjunta."
+      ],
+      "precio":[
+        "Busca en el documento cualquier mención a términos financieros como 'base imponible', 'Total base imponible', 'Importe total', o 'monto'. Extrae un unico valor numérico que este asociado a estos.",
+        "Localiza en el documento cualquier sección que contenga términos relacionados con precios o valores, tales como 'Importe', 'Total', o 'base imponible'. Extrae la cantidad mencionada junto a estos términos.",
+        "Identifica en el documento cualquier frase que incluya las palabras 'Importe total', 'Total base imponible', o 'Valor base'. Extrae el número o monto que aparece junto a estos términos.",
+        "Busca en el documento secciones donde se mencionen montos económicos, como 'base imponible' o 'Importe total'. Extrae la cifra exacta que acompaña a estas menciones.",
+        "Localiza en el documento cualquier mención a 'base imponible', 'Total', 'Importe', o términos similares. Asegúrate de extraer el valor numérico específico que acompaña a estas menciones.",
+        "Revisa las secciones del documento que incluyan términos como 'Total base imponible', 'Importe total', o 'base imponible'. Extrae el valor total indicado en esas secciones."
+      ],
+      "sol_ec":[
+        "Busca en el documento términos relacionados con 'solvencia económica', 'capacidad financiera', 'garantía financiera' o 'criterios de solvencia'. Extrae la información completa relacionada con estos términos.",
+        "Localiza en el documento cualquier sección que mencione 'requisitos financieros', 'solvencia económica' o 'capacidad económica'. Extrae los detalles y cifras mencionadas en estas secciones.",
+        "Busca en el documento menciones a 'garantías', 'avales' o 'respaldo financiero' en el contexto de la 'solvencia económica'. Extrae la información que describa estos requisitos.",
+        "Identifica en el documento secciones que describan 'criterios de solvencia', 'requisitos de solvencia económica' o 'capacidad financiera mínima'. Extrae los detalles específicos de estas condiciones.",
+        "Revisa el documento en busca de cualquier mención a la 'capacidad económica' del licitador, incluyendo términos como 'solvencia' o 'capacidad financiera'. Extrae toda la información relevante.",
+        "Busca en el documento cualquier referencia a 'criterios financieros', 'solvencia económica' o 'capacidad económica y financiera'. Extrae los valores y condiciones que se mencionan junto a estos términos."
+      ],
+      "sol_tec":[
+        "Encuentra información sobre la solvencia técnica requerida o demostrada en el documento.",
+        "Busca detalles sobre la experiencia previa o trabajos realizados que se mencionan como necesarios o relevantes en el documento.",
+        "Localiza en el documento las condiciones que debe cumplir un licitador en cuanto a solvencia técnica.",
+        "Encuentra referencias a la disponibilidad o requisitos del personal técnico necesario para la ejecución del contrato.",
+        "Busca criterios técnicos o de experiencia que se mencionan como necesarios para la adjudicación del contrato.",
+        "Encuentra en el documento cualquier referencia a requisitos financieros que puedan estar relacionados con la solvencia técnica.",
+        "Busca en el documento menciones a declaraciones o compromisos técnicos que deba asumir el licitador."
+        ],
+      "equipo":[
+        "Busca en el documento menciones a 'equipo humano', 'personal requerido', 'equipo de trabajo' o 'recursos humanos'. Extrae la información completa relacionada con los requisitos de personal para el proyecto.",
+        "Localiza en el documento cualquier sección que describa los 'roles', 'responsabilidades' o 'puestos' necesarios para el proyecto. Extrae los detalles que enumeren y describan estos roles.",
+        "Busca en el documento referencias a 'cualificaciones', 'experiencia' o 'competencia' del equipo humano necesario. Extrae la información que detalle estos requisitos.",
+        "Identifica en el documento secciones que mencionen 'equipo técnico', 'personal especializado', o 'recursos humanos especializados'. Extrae la información completa relacionada con estos roles específicos.",
+        "Revisa el documento en busca de cualquier mención a la 'estructura del equipo', 'organización del personal', o 'organigrama del proyecto'. Extrae los detalles que describan la organización del equipo humano.",
+        "Busca en el documento cualquier referencia a 'criterios de selección de personal', 'composición del equipo' o 'requisitos de personal'. Extrae los detalles que se mencionan junto a estos términos."
+      ],
+      "plan_c":[
+        "Busca en el documento cualquier mención a un 'plan de calidad'. Responde con 'sí' si se encuentra, de lo contrario, responde 'no'.",
+        "Revisa el documento para encontrar cualquier sección o referencia a 'plan de calidad'. Responde 'sí' si lo encuentras, o 'no' si no aparece.",
+        "Busca en el documento palabras clave como 'calidad', 'gestión de calidad', o 'plan de calidad'. Responde con 'sí' si alguno de estos términos está presente, de lo contrario, responde 'no'.",
+        "Verifica si el documento menciona o incluye un 'plan de calidad'. Responde con 'sí' si está presente, y 'no' si no lo está.",
+        "Busca en el documento cualquier referencia a un 'plan de calidad' o 'estrategia de calidad'. Responde 'sí' si se menciona, y 'no' si no se menciona."
+      ],
+      "c_sol_tec":[
+        "Busca en el documento cualquier mención a un 'plan de calidad'. Responde con 'sí' si se encuentra, de lo contrario, responde 'no'.",
+        "Revisa el documento para encontrar cualquier sección o referencia a 'plan de calidad'. Responde 'sí' si lo encuentras, o 'no' si no aparece.",
+        "Busca en el documento palabras clave como 'calidad', 'gestión de calidad', o 'plan de calidad'. Responde con 'sí' si alguno de estos términos está presente, de lo contrario, responde 'no'.",
+        "Verifica si el documento menciona o incluye un 'plan de calidad'. Responde con 'sí' si está presente, y 'no' si no lo está.",
+        "Busca en el documento cualquier referencia a un 'plan de calidad' o 'estrategia de calidad'. Responde 'sí' si se menciona, y 'no' si no se menciona."
+      ],
+      "rentabilidad":[
+        "Busca en el documento cualquier mención a la palabra 'rentabilidad' o frases como 'cumple con la rentabilidad'. Responde con 'sí' si se menciona que cumple, de lo contrario, responde 'no'.",
+        "Revisa el documento para encontrar cualquier referencia a 'cumplimiento de rentabilidad', 'criterios de rentabilidad' o 'rentabilidad esperada'. Responde 'sí' si se indica que cumple con la rentabilidad, y 'no' si no se menciona.",
+        "Busca en el documento indicadores financieros que mencionen el cumplimiento de 'rentabilidad'. Responde 'sí' si el documento indica que cumple con los requisitos de rentabilidad, de lo contrario, responde 'no'.",
+        "Busca en el documento secciones que hablen sobre 'análisis de rentabilidad' o 'evaluación de rentabilidad'. Responde 'sí' si se indica que el proyecto o propuesta cumple con la rentabilidad, y 'no' si no se menciona.",
+        "Busca en el documento cualquier afirmación que confirme que se 'cumple con la rentabilidad'. Responde 'sí' si tal afirmación está presente, y 'no' si no lo está."
+      ],
+      "criterios_etic":[
+        "Busca en el documento cualquier mención a 'criterios éticos', 'principios éticos', 'normas éticas' o 'cumplimiento ético'. Responde con 'sí' si se mencionan criterios éticos, de lo contrario, responde 'no'.",
+        "Revisa el documento para encontrar cualquier referencia a 'cumplimiento de normas éticas', 'criterios éticos' o 'principios de ética'. Responde 'sí' si se indica que cumple con criterios éticos, y 'no' si no se menciona.",
+        "Busca en el documento secciones que hablen sobre 'ética', 'criterios éticos', o 'principios de conducta'. Responde 'sí' si se encuentran criterios éticos mencionados, de lo contrario, responde 'no'.",
+        "Busca en el documento menciones a 'código de ética', 'código de conducta', o 'políticas éticas'. Responde 'sí' si se mencionan criterios éticos, y 'no' si no se mencionan.",
+        "Busca en el documento cualquier afirmación que confirme que se cumple con 'criterios éticos' o 'normas éticas'. Responde 'sí' si tal afirmación está presente, y 'no' si no lo está."
+      ] 
+    },
+    "casillas":[4, 5, 6, 12, 13, 15, 19, 21, 23, 24, 26, 28, 30, 32]
+  },
+  "B1":{},
+  "err_404":["No tengo acceso", "No lo se", "No contiene", "No se mencionan", "No se menciona", "Lo siento", "No hay instancia", "No hay instancias"]
+}
+
