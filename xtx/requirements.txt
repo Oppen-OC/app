@@ -1,0 +1,13 @@
+langchain-openai
+dotenv
+bs4
+langchain-community
+langchain-chroma
+pandas
+pdfminer.six
+langchainhub
+streamlit
+css
+faiss-cpu
+pdf2image
+pytesseract
