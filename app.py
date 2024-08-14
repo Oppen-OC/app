@@ -1,15 +1,17 @@
 import re
+import hmac
 import json
 import nltk
-import tablaGo
+import tablaGo as tablaGo
 import pytesseract
 import streamlit as st  
+
 from PIL import Image  
 from io import BytesIO
 from dotenv import load_dotenv
 from pdf2image import convert_from_bytes
 from pdfminer.high_level import extract_text
-from xtx.htmlTemplates import css, bot_template
+from visual.htmlTemplates import css, bot_template
 from langchain_core.messages import HumanMessage
 from langchain_community.vectorstores import FAISS
 from langchain.chains import create_retrieval_chain
@@ -23,7 +25,7 @@ from langchain.chains.combine_documents import create_stuff_documents_chain
 # Load environment variables
 load_dotenv()
 
-with open('config.json') as f:
+with open('docs/config.json') as f:
     config = json.load(f)
 
 # Inicializa el LLM 
@@ -121,7 +123,7 @@ def get_pdf_text(pdf_docs):
 
 def normalizar(txt):
 
-    with open("stopwords.txt", 'r') as file: stopwords = file.read()
+    with open("docs/stopwords.txt", 'r') as file: stopwords = file.read()
 
     txt = txt.lower()
 
@@ -174,6 +176,32 @@ def get_prompt(input):
                 )
     return prompt
 
+def check_password():
+    """Returns `True` if the user had the correct password."""
+
+    def password_entered():
+        """Checks whether a password entered by the user is correct."""
+        if hmac.compare_digest(st.session_state["password"], st.secrets["password"]):
+            st.session_state["password_correct"] = True
+            del st.session_state["password"]  # Don't store the password.
+        else:
+            st.session_state["password_correct"] = False
+
+    # Return True if the password is validated.
+    if st.session_state.get("password_correct", False):
+        return True
+
+    # Show input for password.
+    st.text_input(
+        "Password", type="password", on_change=password_entered, key="password"
+    )
+    if "password_correct" in st.session_state:
+        st.error("Contraseña incorrecta")
+    return False
+
+if not check_password():
+    st.stop()  # Do not continue if check_password is not True.
+
 # Streamlit main function
 def main():
 
@@ -191,7 +219,11 @@ def main():
 
 
     # Configuracion pagina streamlit
-    st.set_page_config(page_title="IA Chat", page_icon=Image.open('img/proyeco_logo.jpg'))
+    st.set_page_config(page_title="IA Chat", page_icon=Image.open('visual/proyeco_logo.jpg'))
+
+    st.write("Here goes your normal Streamlit app...")
+    st.button("Click me")
+
     st.write(css, unsafe_allow_html=True)
     st.header("Pregunta sobre tu PDF")
     user_question = st.text_input(label="Texto", placeholder="Escribe aquí", key='widget')
@@ -229,8 +261,8 @@ def main():
                     text_chunks = get_text_chunks(raw_text)
 
                     # Consigue el vector de la base de datos
-                    vectorstore = get_vectorstore(text_chunks)
-                    # vectorstore = get_vectorstore_local()
+                    # vectorstore = get_vectorstore(text_chunks)
+                    vectorstore = get_vectorstore_local()
 
                     # Convierte al vector store en un retriever, esto facilita la recuperacion de datos
                     retriever = vectorstore.as_retriever(k = 10)
@@ -257,7 +289,7 @@ def main():
                 
                 if st.session_state.button_clicked == True:
                     text_file.write("----------------------------------------------------------------------------------------------\n")
-                    tabla = tablaGo.tablaGo("ficha.xlsx","prompts.json")
+                    tabla = tablaGo.tablaGo("docs/ficha.xlsx","docs/prompts.json")
                     system_questions =  tabla.questions
                     for key in system_questions.keys():
                         for question in system_questions[key]:
@@ -277,5 +309,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-    #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
