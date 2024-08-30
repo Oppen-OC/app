@@ -1,0 +1,203 @@
+----------------------------------------------------------------------------------------------
+titulo | Busca el 'Titulo contrato', este suele contener una desctripcion de las actividades a realizar y suele encontrarse cerca del cuadro de caracteristicas | El "Título del contrato" descrito en el documento es el siguiente:
+
+**Título del Contrato**:
+**Redacción de los proyectos básico y de ejecución (con estudio de seguridad y salud), y las direcciones facultativas (dirección de obra y dirección de ejecución de obra), sin incluir coordinación de seguridad y salud, de la reforma de accesos de las sedes centrales del MNCARS, en el marco del Plan de Recuperación, Transformación y Resiliencia - Financiado por la Unión Europea - Next Generation EU.**
+
+### Actividades a realizar:
+- Redacción de los proyectos básico y de ejecución.
+- Elaboración del estudio de seguridad y salud.
+- Dirección facultativa de la obra.
+- Dirección de ejecución de obra.
+- No incluye la coordinación de seguridad y salud.
+
+Si necesitas más detalles sobre este título o sobre las actividades específicas, házmelo saber.
+----------------------------------------------------------------------------------------------
+organismo | Identifica el nombre del organismo o cliente responsable de la emisión de la licitación, esta suele ser una agencia gubernamental identificada por un acronimo | El organismo responsable de la emisión de la licitación es **MNCARS**, que se refiere al **Museo Nacional Centro de Arte Reina Sofía**.
+----------------------------------------------------------------------------------------------
+exp_int | Identifica el nombre del organismo o cliente responsable de la emisión de la licitación, esta suele ser una agencia gubernamental identificada por un acronimo | NO SE PUDO ENCONTRAR RESPUESTA
+----------------------------------------------------------------------------------------------
+presu | Busca en el documento cualquier mención a términos financieros como 'base imponible', 'Total base imponible', 'Importe total', o 'monto'. Extrae un unico valor numérico que este asociado a estos. | En el documento se menciona el siguiente término financiero relacionado con el monto:
+
+- **Presupuesto Base de Licitación (IVA incluido)**: **145.349,12 €**
+
+Este es el único valor numérico asociado a términos financieros dentro del contexto proporcionado. Si necesitas más información o algún otro dato, no dudes en preguntar.
+----------------------------------------------------------------------------------------------
+tipo_entr | Consultar el tipo de entrega especificada para el proyecto, suele ser de forma 'telemátic' o 'física' | La forma de entrega especificada para el proyecto es de forma **telemática**. Esto se indica en la Cláusula 18, donde se menciona que los licitadores deberán preparar y presentar obligatoriamente sus ofertas de forma electrónica a través de la Plataforma de Contratación del Sector Público.
+
+Si requieres más detalles o tienes alguna otra consulta, házmelo saber.
+----------------------------------------------------------------------------------------------
+duracion | Identifica la duración del proyecto, por favor, responda unicamente en meses | La duración del proyecto es de **25 meses**.
+----------------------------------------------------------------------------------------------
+gar_seg | Busca y extrae cualquier sección del documento que describa un seguro o una garantía. La sección debe incluir términos como 'Seguro', 'Garantía', 'Suma asegurada' o 'Asegurado', y describir aspectos como montos asegurados, partes involucradas, o riesgos cubiertos. Asegúrate de que el texto esté organizado en varios puntos o subpárrafos | Aquí tienes la sección del documento que describe la garantía, organizada en formato de puntos:
+
+### Garantía Definitiva
+
+1. **Valor de la Garantía**:
+   - El adjudicatario del contrato deberá constituir una garantía definitiva general por un valor correspondiente al **5% del precio final ofertado**, IVA excluido.
+
+2. **Forma de Constituir la Garantía**:
+   - La garantía podrá ser aportada mediante:
+     - Un **aval bancario**.
+     - Un **seguro de caución** por el mismo importe.
+
+3. **Finalidad de la Garantía**:
+   - Dicha garantía responderá del **cumplimiento o correcta ejecución** de las obligaciones derivadas del contrato.
+
+4. **Documentación**:
+   - Los modelos de la garantía que deben utilizarse se encuentran como Anexos IV y V del presente pliego.
+
+Si necesitas más detalles o información adicional sobre este tema, no dudes en preguntar.
+----------------------------------------------------------------------------------------------
+fechas | Ubicar dentro del documento la fecha de entrega, consulta y visita y escribelo en formato de lista | NO SE PUDO ENCONTRAR RESPUESTA
+----------------------------------------------------------------------------------------------
+sol_ec | Busca en el documento términos relacionados con 'solvencia económica', 'capacidad financiera', 'garantía financiera' o 'criterios de solvencia'. Extrae la información completa relacionada con estos términos. | Aquí está la información relacionada con "solvencia económica", "capacidad financiera", y "criterios de solvencia" extraída del documento:
+
+### Solvencia Económica y Financiera
+
+1. **Acreditación de la Solvencia**:
+   - La solvencia económica y financiera del empresario deberá ser acreditada por los siguientes medios:
+     - **NIF de la empresa**.
+     - **NIF del empresario o del representante de la empresa firmante del contrato**.
+     - **Escritura de poder del representante de la empresa firmante del contrato**.
+     - **Escritura de constitución de la empresa**.
+     - **Documentación acreditativa de la solvencia económica y financiera**.
+     - **Copia de la póliza de seguro de responsabilidad civil por riesgos profesionales**, y copia del recibo que acredite el pago de la misma.
+     - **Certificación positiva de la entidad correspondiente de la Seguridad Social** de encontrarse al corriente de sus obligaciones con la Seguridad Social a efectos de contratar con el sector público (artículo 15 del RGLCAP).
+     - **Certificación positiva de la Agencia Estatal de Administración Tributaria** (o administración tributaria correspondiente) de encontrarse al corriente de sus obligaciones tributarias.
+
+2. **Requisitos para los Licitadores**:
+   - Los licitadores deberán tener un volumen de negocios adecuado para la ejecución del contrato.
+   - Se podrán exigir formas de responsabilidad conjunta entre el empresario y otras entidades en la ejecución del contrato, incluso con carácter solidario.
+
+3. **Exigencias en caso de Unión Temporal**:
+   - Si alguna o algunas de las empresas integrantes de una unión temporal fuesen declaradas en concurso de acreedores, continuarán la ejecución del contrato con las empresas restantes siempre que estas cumplan los requisitos de solvencia o clasificación exigidos.
+
+Si necesitas más especificaciones o detalles adicionales sobre algún aspecto relacionado, házmelo saber.
+----------------------------------------------------------------------------------------------
+sol_tec | Busca y extrae cualquier sección del documento que describa los requisitos de solvencia técnica. La sección debe incluir menciones a documentos o informes que el licitador debe presentar, como la relación de servicios o trabajos realizados en los últimos años. Debe también incluir criterios mínimos de importe anual acumulado y detalles sobre el personal técnico requerido, mencionando roles específicos y puestos técnicos. | Aquí tienes la información relacionada con los requisitos de solvencia técnica extraída del documento:
+
+### Requisitos de Solvencia Técnica
+
+1. **Documentación a Presentar**:
+   - El licitador deberá aportar una relación de **personal técnico** que realizará el trabajo.
+   - Se deberá incluir el **currículum vitae (C.V.) de los integrantes** del equipo técnico.
+
+2. **Criterios Mínimos**:
+   - La relación del Equipo Técnico que el licitador se obliga a asignar al contrato de servicios estará compuesta al menos por:
+     - **Un/a Arquitecto/a**:
+       - Debe estar cualificado para la redacción de proyectos y dirección de obras del edificio objeto del presente pliego.
+       - Experiencia mínima: al menos **cinco (5) años** en la redacción de proyectos y en la dirección de obras de edificación (ejecutadas o en ejecución) tanto en obra nueva como en rehabilitación.
+       - Debe haber intervenido en al menos **dos (2)** bienes BIC o de reconocido valor patrimonial.
+
+     - **Un/a Arquitecto/a Técnico/a o Aparejador/a**:
+       - Debe estar cualificado para la dirección de ejecución de las obras de rehabilitación del edificio objeto del presente pliego.
+       - Experiencia mínima: al menos **cinco (5) años** en la dirección de ejecución de obras de edificación (ejecutadas o en ejecución) tanto en obra nueva como en rehabilitación.
+       - Debe haber intervenido en al menos **dos (2)** bienes BIC o de reconocido valor patrimonial.
+
+     - **Conservador/Restaurador**:
+       - Deberá tener experiencia en edificios declarados Bien de Interés Cultural o de reconocido valor patrimonial, para dar apoyo a las propuestas técnicas y asegurar el cumplimiento normativo.
+
+3. **Importe Anual Acumulado**:
+   - Se especificaran criterios mínimos de solvencia técnica, pero el documento no establece un importe anual acumulado específico.
+
+Si necesitas más detalles sobre algún aspecto específico o cualquier otra consulta, no dudes en preguntar.
+----------------------------------------------------------------------------------------------
+equipo | Busca en el documento menciones a 'equipo humano', 'personal requerido', 'equipo de trabajo' o 'recursos humanos'. Extrae la información completa relacionada con los requisitos de personal para el proyecto. | Aquí tienes la información relacionada con los requisitos de personal para el proyecto, extraída del documento:
+
+### Requisitos de Personal para el Proyecto
+
+1. **Composición del Equipo Técnico**:
+   - El licitador deberá presentar un **Equipo Técnico** que estará obligado a asignar al contrato de servicios. Este equipo deberá estar compuesto, al menos, por:
+     - **Un/a Arquitecto/a**:
+       - Responsable de la redacción de los proyectos y dirección de las obras del edificio objeto del pliego.
+       - Experiencia mínima: al menos **cinco (5) años** en redacción de proyectos y dirección de obras tanto de obra nueva como de rehabilitación.
+       - Debe haber intervenido en al menos **dos (2)** bienes BIC o de reconocido valor patrimonial.
+
+     - **Un/a Arquitecto/a Técnico/a o Aparejador/a**:
+       - Para la dirección de ejecución de las obras de rehabilitación del edificio.
+       - Experiencia mínima: al menos **cinco (5) años** en dirección de ejecución de obras tanto de obra nueva como de rehabilitación.
+       - Debe haber intervenido en al menos **dos (2)** bienes BIC o de reconocido valor patrimonial.
+
+     - **Conservador/Restaurador**:
+       - Con experiencia en edificios declarados Bien de Interés Cultural o de reconocido valor patrimonial, que dará apoyo a las propuestas técnicas.
+
+2. **Presentación del Personal**:
+   - Se deberá proporcionar una relación detallada del personal técnico que se destinará al contrato, así como sus respectivos currículum vitae (C.V.) para evidencia de sus capacidades y experiencia.
+
+3. **Intervenciones Previas**:
+   - Se requiere que tanto el arquitecto como el arquitecto técnico hayan participado en actuaciones similares a las licitadas en al menos **dos (2)** bienes BIC o con reconocido valor patrimonial.
+
+Si necesitas más detalles o tienes alguna otra consulta sobre este tema, házmelo saber.
+----------------------------------------------------------------------------------------------
+crit_adj | X | Parece que tu mensaje está incompleto. Si necesitas información adicional o tienes alguna pregunta específica sobre las licitaciones, no dudes en decírmelo. Estoy aquí para ayudar.
+----------------------------------------------------------------------------------------------
+ofer_tec | Busca y extrae cualquier sección del documento que describa criterios de oferta técnica. Asegúrate de que el texto esté organizado en formato de lista o puntos numerados. | Aquí tienes la sección del documento que describe los criterios de oferta técnica, organizada en formato de lista:
+
+### Criterios de Oferta Técnica
+
+1. **Metodología de la Intervención a Realizar**: 
+   - Se otorgará una puntuación máxima de hasta **40 puntos**:
+     - Descripción de la propuesta de intervención destinada a alcanzar el objetivo conforme a lo recogido en el Pliego de Prescripciones Técnicas.
+     - Mención de medidas a adoptar, previas y durante la obra, para evitar incidencias en los elementos histórico-artísticos existentes.
+     - Cumplimiento de lo requerido en intervenciones sobre bienes inmuebles declarados BIC o de reconocido valor patrimonial.
+
+2. **Cronograma de Plazos Estimados**: 
+   - Se otorgarán hasta **5 puntos** por un cronograma que sea coherente con la propuesta de intervención general y las medidas planteadas para minimizar el efecto de la intervención en el funcionamiento del edificio y/o el trabajo del personal.
+
+3. **Acreditación del Personal**: 
+   - Acreditación de la intervención del personal en actuaciones puntuables: hasta **7 puntos**.
+   - Acreditación de la intervención del conservador/restaurador en actuaciones puntuables: se indicará el puntaje correspondiente.
+
+4. **Realización de Visita al Inmueble**:
+   - Acreditación de la realización de la visita al inmueble será valorada con hasta **3 puntos**.
+
+Estos criterios evaluables se tendrán en cuenta en la fase técnica de la adjudicación. Si necesitas más información o tienes alguna otra pregunta, házmelo saber.
+----------------------------------------------------------------------------------------------
+crit_bin | Busca y extrae cualquier sección del documento que describa criterios de oferta técnica. Asegúrate de que el texto esté organizado en formato de lista o puntos numerados. | NO SE PUDO ENCONTRAR RESPUESTA
+----------------------------------------------------------------------------------------------
+ofer_ec | Busca y extrae cualquier sección del documento que describa criterios automáticos de la oferta económica. La sección debe incluir menciones a 'POR FÓRMULAS' con la asignación de un porcentaje total, desglosado en componentes como 'Precio', 'Otros criterios', y consideraciones sobre incrementos de plazo. Asegúrate de que el texto esté organizado en un formato de lista o puntos claramente definidos. | Aquí tienes la sección del documento que describe los criterios automáticos de la oferta económica, organizada en formato de lista:
+
+### Criterios Automáticos de la Oferta Económica
+
+1. **Precio**:
+   - Se asignará una puntuación máxima de hasta **40 puntos** a la oferta más económica.
+   - La puntuación para las ofertas se calculará mediante la siguiente fórmula:
+     - **Puntuación = Puntuación máxima x (Precio oferta más baja / Precio de la oferta a valorar)**.
+
+2. **Criterios Evaluables de Forma Automática**: 
+   - Se otorgarán hasta **55 puntos** en total según los siguientes componentes:
+     - **Compromiso de reducción de plazos**: hasta **3 puntos**.
+     - **Acreditación de la intervención del personal en actuaciones puntuables**: hasta **7 puntos**.
+     - **Acreditación de la intervención del conservador/restaurador en actuaciones puntuables**: se especificarán los puntos correspondientes.
+
+3. **Condiciones Adicionales**:
+   - Los criterios automáticos son evaluables en función de los documentos y justificaciones presentados por el licitador.
+   - Los incrementos en los plazos estimados sin justificación adecuada pueden derivar en una penalización en los componentes evaluables automáticamente.
+
+Estos criterios son parte de la evaluación para la adjudicación del contrato, asegurando un análisis automático y sistemático de las ofertas económicas presentadas. Si necesitas más detalles o alguna otra consulta, házmelo saber.
+----------------------------------------------------------------------------------------------
+form_pago | Busca y extrae cualquier sección del documento que describa la forma de pago. | Aquí tienes la sección del documento que describe la forma de pago:
+
+### Forma de Pago
+
+1. **Facturación Electrónica**:
+   - Las facturas deberán enviarse, siempre que sea posible, como Factura electrónica a través de la plataforma FACe (Punto General de Entrada de Facturas de la Administración General del Estado).
+
+2. **Códigos DIR3**:
+   - Las facturas deben incluir los siguientes códigos DIR3:
+     - **Oficina Contable**: EA0023297 v2 - Sociedad Mercantil Estatal de Gestión Inmobiliaria de Patrimonio, M.P., S.A.
+     - **Órgano Gestor**: EA0023297 v2 - Sociedad Mercantil Estatal de Gestión Inmobiliaria de Patrimonio, M.P., S.A.
+     - **Unidad Tramitadora**: EA0048968 v1 - Segipsa Proyectos - Área Proyectos PRTR.
+
+3. **Remisión Subsidiaria**:
+   - Subsidiariamente, se podrá remitir factura en formato electrónico válido con firma electrónica incorporada a la dirección de correo electrónico facturacion@segipsa.es.
+
+4. **Presentación y Conformidad**:
+   - Los pagos serán abonados previa presentación de las correspondientes facturas, que deberán estar certificadas de conformidad por el Responsable del contrato.
+
+5. **Plazo de Pago**:
+   - Se cumplirán los plazos establecidos en el artículo 198.4 LCSP para el pago, condicionados al cumplimiento de las obligaciones contractuales.
+
+Si necesitas más detalles o información adicional sobre este tema, no dudes en preguntar.
+----------------------------------------------------------------------------------------------

@@ -16,7 +16,7 @@
         "Busca en el pie de página del documento menciones a entidades que incluyen términos como 'Consejo', 'Administración', 'Ministerio', o 'Alta Velocidad'. Extrae la información completa relacionada con el organismo que emite la licitación.",
         "Identifica en el pie de página cualquier referencia cruzada que mencione al organismo encargado de la licitación. Extrae el nombre de dicho organismo y cualquier información relevante adjunta."
       ],
-      "precio":[
+      "presu":[
         "Busca en el documento cualquier mención a términos financieros como 'base imponible', 'Total base imponible', 'Importe total', o 'monto'. Extrae un unico valor numérico que este asociado a estos.",
         "Localiza en el documento cualquier sección que contenga términos relacionados con precios o valores, tales como 'Importe', 'Total', o 'base imponible'. Extrae la cantidad mencionada junto a estos términos.",
         "Identifica en el documento cualquier frase que incluya las palabras 'Importe total', 'Total base imponible', o 'Valor base'. Extrae el número o monto que aparece junto a estos términos.",
@@ -80,7 +80,109 @@
     },
     "casillas":[4, 5, 6, 12, 13, 15, 19, 21, 23, 24, 26, 28, 30, 32]
   },
-  "B1":{},
-  "err_404":["No tengo acceso", "No lo se", "No contiene", "No se mencionan", "No se menciona", "Lo siento", "No hay instancia", "No hay instancias"]
+  "B1":{
+    "casillas":["B4", "B5", "B6", "B7", "B8", "B9", "B10", "B13", "B15", "B16", "B18", "B21", "B22", "B23", "B24", "B26", "F1", "F2", "F3", "F4", "F5" ],
+    "preguntas":{
+      "titulo":[
+        "Busca el 'Titulo contrato', este suele contener una desctripcion de las actividades a realizar y suele encontrarse cerca del cuadro de caracteristicas",
+        "Localiza el título del proyecto en el documento. El título generalmente incluye la ubicación del proyecto y se encuentra cerca de un cuadro de características técnicas o detalles del proyecto.",
+        "Identifica el título que menciona la ubicación del proyecto, el cual está generalmente acompañado por un cuadro o sección que describe características técnicas o específicas del proyecto.",
+        "Encuentra el título del proyecto en el documento, asegurándote de que incluya la ubicación. Este título debería estar cerca de un cuadro que detalla las características del proyecto."
+      ],
+      "organismo":[
+        "Identifica el nombre del organismo o cliente responsable de la emisión de la licitación, esta suele ser una agencia gubernamental identificada por un acronimo",
+        "Encuentra en el documento el nombre del cliente o entidad que ha emitido la licitación. Este nombre debería estar en una posición prominente, posiblemente en el encabezado o en la página de portada.",
+        "Busca el nombre del cliente o entidad encargada de la emisión de la licitación. Este nombre generalmente aparece al inicio del documento o en una sección dedicada a la información del proyecto.",
+        "Localiza el nombre del organismo o cliente que emite la licitación. Este nombre está usualmente presente en la parte superior del documento, posiblemente acompañado de un logotipo o en un encabezado.",
+        "Encuentra en el documento el nombre del organismo o cliente encargado de la licitación. Busca este nombre en las primeras secciones del documento, donde generalmente se presenta la información oficial del proyecto."
+      ],
+      "exp_int":[
+      ],
+      "presu":[
+        "Busca en el documento cualquier mención a términos financieros como 'base imponible', 'Total base imponible', 'Importe total', o 'monto'. Extrae un unico valor numérico que este asociado a estos.",
+        "Localiza en el documento cualquier sección que contenga términos relacionados con precios o valores, tales como 'Importe', 'Total', o 'base imponible'. Extrae la cantidad mencionada junto a estos términos.",
+        "Identifica en el documento cualquier frase que incluya las palabras 'Importe total', 'Total base imponible', o 'Valor base'. Extrae el número o monto que aparece junto a estos términos.",
+        "Busca en el documento secciones donde se mencionen montos económicos, como 'base imponible' o 'Importe total'. Extrae la cifra exacta que acompaña a estas menciones.",
+        "Localiza en el documento cualquier mención a 'base imponible', 'Total', 'Importe', o términos similares. Asegúrate de extraer el valor numérico específico que acompaña a estas menciones.",
+        "Revisa las secciones del documento que incluyan términos como 'Total base imponible', 'Importe total', o 'base imponible'. Extrae el valor total indicado en esas secciones.",
+        "Presupuesto Base licitación."
+      ],
+      "tipo_entr":[
+        "Consultar el tipo de entrega especificada para el proyecto, suele ser de forma 'telemátic' o 'física'",
+        "Identifica el método de entrega del proyecto, suele ser de forma 'telemátic' o 'física'",
+        "De que manera deberá entregarse el proyecto? suele ser de forma 'telemátic' o 'física'"
+      ],
+      "duracion":[
+        "Identifica la duración del proyecto, por favor, responda unicamente en meses",
+        "Consultar la duración especificada para este proyecto",
+        "Explica el periodo de tiempo del proyecto"
+      ],
+      "gar_seg":[
+        "Provisional, definitiva, complementaria.",
+        "Busca y extrae cualquier sección del documento que describa un seguro o una garantía. La sección debe incluir términos como 'Seguro', 'Garantía', 'Suma asegurada' o 'Asegurado', y describir aspectos como montos asegurados, partes involucradas, o riesgos cubiertos. Asegúrate de que el texto esté organizado en varios puntos o subpárrafos",
+        "Identifica cualquier sección del documento que describa detalles de un seguro o una garantía. El texto debe incluir términos como 'Suma asegurada', 'Asegurado', y 'Riesgos específicos'. Asegúrate de que el contenido esté estructurado en formato de lista o subpárrafos, con descripciones detalladas de las coberturas o responsabilidades",
+        "Busca en el documento cualquier texto que mencione un seguro de responsabilidad civil o garantías asociadas. La sección debe contener información sobre la suma asegurada, la parte asegurada, y los riesgos cubiertos, y debe estar claramente organizada en formato de lista o bloques de información.",
+        "Encuentra y extrae cualquier descripción de garantías o seguros dentro del documento. La sección debe incluir referencias a términos como 'Responsabilidad civil', 'Suma asegurada', y 'Riesgos asegurados', y debe estar organizada en puntos clave o subpárrafos para describir las coberturas ofrecidas.",
+        "Identifica y extrae cualquier texto relacionado con seguros o garantías en el documento. La sección debe detallar la suma asegurada, las partes involucradas, y los riesgos específicos cubiertos. El contenido debe estar presentado en un formato estructurado, como una lista o puntos separados."
+      ],
+      "fechas":[
+        "Ubicar dentro del documento la fecha de entrega, consulta y visita y escribelo en formato de lista"
+      ],
+      "sol_ec":[
+        "Busca en el documento términos relacionados con 'solvencia económica', 'capacidad financiera', 'garantía financiera' o 'criterios de solvencia'. Extrae la información completa relacionada con estos términos.",
+        "Localiza en el documento cualquier sección que mencione 'requisitos financieros', 'solvencia económica' o 'capacidad económica'. Extrae los detalles y cifras mencionadas en estas secciones.",
+        "Busca en el documento menciones a 'garantías', 'avales' o 'respaldo financiero' en el contexto de la 'solvencia económica'. Extrae la información que describa estos requisitos.",
+        "Identifica en el documento secciones que describan 'criterios de solvencia', 'requisitos de solvencia económica' o 'capacidad financiera mínima'. Extrae los detalles específicos de estas condiciones.",
+        "Revisa el documento en busca de cualquier mención a la 'capacidad económica' del licitador, incluyendo términos como 'solvencia' o 'capacidad financiera'. Extrae toda la información relevante.",
+        "Busca en el documento cualquier referencia a 'criterios financieros', 'solvencia económica' o 'capacidad económica y financiera'. Extrae los valores y condiciones que se mencionan junto a estos términos."
+      ],
+      "sol_tec":[
+        "Busca y extrae cualquier sección del documento que describa los requisitos de solvencia técnica. La sección debe incluir menciones a documentos o informes que el licitador debe presentar, como la relación de servicios o trabajos realizados en los últimos años. Debe también incluir criterios mínimos de importe anual acumulado y detalles sobre el personal técnico requerido, mencionando roles específicos y puestos técnicos.",
+        "Identifica cualquier sección del documento que detalle los criterios de solvencia técnica. El texto debe mencionar requisitos como la presentación de una relación de servicios o trabajos previos, la obligación de cumplir con un importe mínimo anual acumulado, y la necesidad de vincular personal técnico específico para la ejecución del contrato.",
+        "Busca en el documento cualquier texto que mencione los requisitos técnicos que debe cumplir el licitador. La sección debe incluir detalles sobre la presentación de trabajos anteriores, el cumplimiento de un importe mínimo anual, y la disposición de personal técnico, y especialistas en BIM. El contenido debe estar claramente estructurado en un formato descriptivo.",
+        "Encuentra y extrae cualquier descripción relacionada con los requisitos de solvencia técnica dentro del documento. La información debe mencionar la presentación de trabajos previos similares al objeto del contrato, un importe mínimo anual acumulado, y la necesidad de disponer de un equipo técnico específico, incluyendo roles.",
+        "Identifica y extrae cualquier texto relacionado con la solvencia técnica en el documento. La sección debe describir la presentación de una relación de servicios realizados, el cumplimiento de un importe anual acumulado, y la vinculación de personal técnico específico para la ejecución del contrato, mencionando roles y especialistas."
+        ],
+      "equipo":[
+        "Busca en el documento menciones a 'equipo humano', 'personal requerido', 'equipo de trabajo' o 'recursos humanos'. Extrae la información completa relacionada con los requisitos de personal para el proyecto.",
+        "Localiza en el documento cualquier sección que describa los 'roles', 'responsabilidades' o 'puestos' necesarios para el proyecto. Extrae los detalles que enumeren y describan estos roles.",
+        "Busca en el documento referencias a 'cualificaciones', 'experiencia' o 'competencia' del equipo humano necesario. Extrae la información que detalle estos requisitos.",
+        "Identifica en el documento secciones que mencionen 'equipo técnico', 'personal especializado', o 'recursos humanos especializados'. Extrae la información completa relacionada con estos roles específicos.",
+        "Revisa el documento en busca de cualquier mención a la 'estructura del equipo', 'organización del personal', o 'organigrama del proyecto'. Extrae los detalles que describan la organización del equipo humano.",
+        "Busca en el documento cualquier referencia a 'criterios de selección de personal', 'composición del equipo' o 'requisitos de personal'. Extrae los detalles que se mencionan junto a estos términos."
+      ],
+      "crit_adj":[
+        "X",
+        "Busca y extrae cualquier sección del documento que describa criterios de adjudicación. La sección debe incluir términos como 'TÉCNICOS', 'POR FÓRMULAS', junto con porcentajes o ponderaciones. Asegúrate de que el texto esté organizado en un formato de lista o con puntos claramente definidos.",
+        "Identifica cualquier sección del documento que detalle las ponderaciones de los criterios de adjudicación. El texto debe incluir términos como 'TÉCNICOS' y 'POR FÓRMULAS' con sus correspondientes porcentajes o valores. Asegúrate de que la información esté organizada de manera clara y estructurada.",
+        "Busca en el documento cualquier texto que mencione criterios de adjudicación, especialmente aquellos que utilizan porcentajes o ponderaciones. La sección debe estar organizada por categorías como 'TÉCNICOS' y 'POR FÓRMULAS', con la asignación correspondiente de porcentajes.",
+        "Encuentra y extrae cualquier descripción relacionada con los criterios de adjudicación dentro del documento. La información debe incluir categorías como 'TÉCNICOS' y 'POR FÓRMULAS', junto con sus respectivos porcentajes de ponderación. Asegúrate de que esté presentada en un formato de lista o tabla.",
+        "Identifica y extrae cualquier texto relacionado con los criterios de adjudicación en el documento. La sección debe mencionar porcentajes o ponderaciones para categorías como 'TÉCNICOS' y 'POR FÓRMULAS'. El contenido debe estar organizado en formato de lista o en bloques claramente definidos."
+      ],
+      "ofer_tec":[
+        "Busca y extrae cualquier sección del documento que describa criterios de oferta técnica. Asegúrate de que el texto esté organizado en formato de lista o puntos numerados.",
+        "Identifica cualquier sección del documento que detalle los criterios automáticos de oferta técnica. La información debe estar organizada en formato numerado o en lista.",
+        "Busca en el documento cualquier texto que mencione criterios de evaluación técnica dentro de la oferta, especialmente aquellos que utilizan un sistema de puntos. La sección debe incluir categorías con la asignación correspondiente de puntos en un formato de lista numerada.",
+        "Encuentra y extrae cualquier descripción relacionada con los criterios automáticos de oferta técnica dentro del documento. La información debe incluir categorías junto con sus respectivos puntos, organizados en un formato de lista o numeración.",
+        "Identifica y extrae cualquier texto relacionado con la oferta técnica en el documento que esté evaluado por puntos. La sección debe mencionar categorías como 'Memoria Técnica', 'Calidad', 'Medioambientales', 'Tecnología e I+D+I', con la correspondiente asignación de puntos. El contenido debe estar claramente estructurado en formato de lista numerada o puntos."
+      ],
+      "crit_bin":[],
+      "ofer_ec":[
+        "Busca y extrae cualquier sección del documento que describa criterios automáticos de la oferta económica. La sección debe incluir menciones a 'POR FÓRMULAS' con la asignación de un porcentaje total, desglosado en componentes como 'Precio', 'Otros criterios', y consideraciones sobre incrementos de plazo. Asegúrate de que el texto esté organizado en un formato de lista o puntos claramente definidos.",
+        "Identifica cualquier sección del documento que detalle los componentes de la oferta económica. El texto debe incluir una estructura desglosada con términos como 'Precio', 'Otros criterios', y la ponderación en puntos para cada criterio. Debe también mencionar cualquier ajuste basado en incrementos de plazo, con valores específicos como porcentajes máximos. Asegúrate de que la información esté claramente organizada.",
+        "Busca en el documento cualquier texto que mencione criterios automáticos de evaluación económica. La sección debe incluir un porcentaje total bajo 'POR FÓRMULAS' y desglosar los puntos para criterios como 'Precio' y 'Otros criterios'. Además, debe detallar consideraciones sobre incrementos de plazo, especificando porcentajes máximos y los puntos asignados. El contenido debe estar organizado en un formato de lista numerada o con puntos.",
+        "Encuentra y extrae cualquier descripción relacionada con los criterios automáticos de la oferta económica dentro del documento. La información debe incluir un desglose de los puntos asignados para 'Precio' y 'Otros criterios', así como la consideración de incrementos de plazo, especificando el porcentaje de incremento y su impacto en la puntuación total. Asegúrate de que la información esté bien organizada y clara.",
+        "Identifica y extrae cualquier texto relacionado con la oferta económica en el documento, evaluada por criterios automáticos. La sección debe mencionar 'POR FÓRMULAS' con un porcentaje asignado y desglosar los puntos en componentes como 'Precio' y 'Otros criterios'. También debe incluir detalles sobre incrementos de plazo y el impacto en la puntuación. El contenido debe estar organizado de manera estructurada."
+      ],
+      "form_pago":[
+        "Busca y extrae cualquier sección del documento que describa la forma de pago.",
+        "Identifica cualquier sección del documento que detalle las condiciones de pago.",
+        "Busca en el documento cualquier texto que mencione los términos y la forma de pago acordados.",
+        "Encuentra y extrae cualquier descripción relacionada con la forma de pago dentro del documento. La información debe incluir la estructura de pagos.",
+        "Identifica y extrae cualquier texto relacionado con la forma de pago en el documento."
+      ]
+    }
+  },
+  "err_404":["No tengo acceso", "No lo se", "No contiene", "No se mencionan", "No se menciona", "Lo siento", "No hay instancia", "No hay instancias", "Lamentablemente", "No especifica"]
 }
 

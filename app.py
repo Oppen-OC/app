@@ -1,13 +1,17 @@
 import re
+import os
 import hmac
 import json
 import nltk
-import tablaGo as tablaGo
 import pytesseract
+import pandas as pd
 import streamlit as st  
+import tablaGo as tablaGo
+
 
 from PIL import Image  
 from io import BytesIO
+from dotenv import load_dotenv
 from dotenv import load_dotenv
 from pdf2image import convert_from_bytes
 from pdfminer.high_level import extract_text
@@ -21,15 +25,17 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain.chains.combine_documents import create_stuff_documents_chain
 
-
 # Load environment variables
 load_dotenv()
 
-with open('docs/config.json') as f:
+# Explicitly set environment variables if needed
+os.environ["LANGCHAIN_TRACING_V2"] = "true"
+os.environ["LANGCHAIN_API_KEY"] = os.getenv("LANGCHAIN_API_KEY")
+
+with open('docs\\config.json') as f:
     config = json.load(f)
 
 # Inicializa el LLM 
-
 model_params = config['model']['parameters']
 
 llm = ChatOpenAI(
@@ -123,7 +129,7 @@ def get_pdf_text(pdf_docs):
 
 def normalizar(txt):
 
-    with open("docs/stopwords.txt", 'r') as file: stopwords = file.read()
+    with open("docs\\stopwords.txt", 'r') as file: stopwords = file.read()
 
     txt = txt.lower()
 
@@ -166,15 +172,6 @@ def get_vectorstore_local():
     print("GOT LOCAL")
     return FAISS.load_local("Otro", embeddings, allow_dangerous_deserialization=True)
 
-def get_prompt(input):
-    prompt = ChatPromptTemplate.from_messages(
-                    [
-                        ("system", system_prompt),
-                        MessagesPlaceholder(variable_name="chat_history"),
-                        ("human", "{input}"),
-                    ]
-                )
-    return prompt
 
 def check_password():
     """Returns `True` if the user had the correct password."""
@@ -219,11 +216,7 @@ def main():
 
 
     # Configuracion pagina streamlit
-    st.set_page_config(page_title="IA Chat", page_icon=Image.open('visual/proyeco_logo.jpg'))
-
-    st.write("Here goes your normal Streamlit app...")
-    st.button("Click me")
-
+    st.set_page_config(page_title="IA Chat", page_icon=Image.open('visual\\proyeco_logo.jpg'))
     st.write(css, unsafe_allow_html=True)
     st.header("Pregunta sobre tu PDF")
     user_question = st.text_input(label="Texto", placeholder="Escribe aquí", key='widget')
@@ -265,16 +258,9 @@ def main():
                     vectorstore = get_vectorstore_local()
 
                     # Convierte al vector store en un retriever, esto facilita la recuperacion de datos
-                    retriever = vectorstore.as_retriever(k = 10)
+                    retriever = vectorstore.as_retriever(k = 7)
                     st.session_state.retriever = retriever
                     print(retriever)
-
-                    # Especifica el contexto antes de pasarselo al llm
-                    question_answer_chain = create_stuff_documents_chain(llm, prompt)
-
-                    # Propaga el contexto por toda la cadena
-                    rag_chain = create_retrieval_chain(get_history(retriever), question_answer_chain)
-                    st.session_state.rag_chain = rag_chain
 
                     print("Final del proceso")
 
@@ -283,29 +269,66 @@ def main():
             else:
                 st.warning("Por favor, suba un documento antes de procesar")
 
-        if st.button("Generar ficha"):
+        if st.button("Generar ficha go"):
+            with st.spinner("Procesando"):
 
-            with open("Output.txt", "w", encoding="utf-8") as text_file:
-                
-                if st.session_state.button_clicked == True:
-                    text_file.write("----------------------------------------------------------------------------------------------\n")
-                    tabla = tablaGo.tablaGo("docs/ficha.xlsx","docs/prompts.json")
-                    system_questions =  tabla.questions
-                    for key in system_questions.keys():
-                        for question in system_questions[key]:
-                            response = st.session_state.rag_chain.invoke({"input": str(question),'context': get_history(st.session_state.retriever), 'chat_history': st.session_state.chat_history})
-                            print(f"{key} | {question} | {response['answer']}")
-                            if tabla.contains_any_phrases(response['answer'], tabla.err):
-                                print("necesitamos otra")
-                            else:
-                                text_file.write(f"{key} | {question} | {response['answer']}\n")
+                with open("Output.txt", "w", encoding="utf-8") as text_file:
+                    
+                    df = None
+                    tabla = None
 
+                    if st.session_state.button_clicked == True:
+                        text_file.write("----------------------------------------------------------------------------------------------\n")
+                        tabla = tablaGo.tablaGo("docs\\ficha.xlsx","docs\\prompts.json")
+                        system_questions =  tabla.questions
+                        casillas = tabla.casillas
+                        print(system_questions)
+                        keys_list = list(system_questions.keys())
+                        cont = 0
+                        df = pd.read_excel('docs\\ficha.xlsx', sheet_name='B1 Requisitos licitación')
+
+                        for key in keys_list:
+                            res = ""
+
+                            for question in system_questions[key]:
+                                response = st.session_state.rag_chain.invoke({"input": str(question),'context': get_history(st.session_state.retriever), 'chat_history': st.session_state.chat_history})
+                                print(f"{key} | {question} | {response['answer']}")
+
+                                if tabla.contains_any_phrases(response['answer'], tabla.err):
+                                    print("necesitamos otra")
+
+                                else:
+                                    res = response['answer'] 
+
+                                    # Generar archivo .txt
+                                    text_file.write(f"{key} | {question} | {res}\n")
+                                    text_file.write("----------------------------------------------------------------------------------------------\n")
+
+                                    # Generar archivo xlsx
+                                    tabla.modify("B1 Requisitos licitación", casillas[cont], res)
+                                    cont += 1
+
+                                    break
+
+                            if res == "":
+                                text_file.write(f"{key} | {question} | {"NO SE PUDO ENCONTRAR RESPUESTA"}\n")
                                 text_file.write("----------------------------------------------------------------------------------------------\n")
-                                break
-                    print("Holaaa")
-                
-                else:
-                    st.warning("Por favor, procese algun documento antes de generar la ficha")
+                                tabla.modify("B1 Requisitos licitación", casillas[cont], "NO SE PUDO ENCONTRAR RESPUESTA") 
+                                cont += 1
+                        print("############################## Proceso terminado ##############################")
+                    
+                    else:
+                        st.warning("Por favor, procese algun documento antes de genesrar la ficha")
 
+            if df.bool is not None and tabla is not None:
+                st.download_button(
+                    label="Descargar Ficha Go", 
+                    data=tabla.save_file(), 
+                    file_name="FichaGo.xlsx", 
+                    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                )
+
+
+    
 if __name__ == "__main__":
     main()

@@ -1,5 +1,6 @@
 from openpyxl import load_workbook
 import json
+from io import BytesIO
 
 class tablaGo:
     def __init__(self, input_excel_file, prompts):
@@ -10,7 +11,12 @@ class tablaGo:
         with open(prompts, 'r', encoding='utf-8') as f:
             self.prompts = json.load(f)
 
-        self.questions = self.prompts["A1"]["preguntas"]
+        self.questions = self.prompts["B1"]["preguntas"]
+        self.casillas = self.prompts["B1"]["casillas"]
+
+        self.file = load_workbook(input_excel_file)
+        self.A1 = self.file["A1 Resumen"]
+        self.B1 = self.file["B1 Requisitos licitación"]
 
         self.err = self.prompts["err_404"]
     # Rellena las casillas de la Ficha GO
@@ -18,9 +24,14 @@ class tablaGo:
         self.input_excel_file[sheet][cell] = answer
 
 
-    def save(self, path):
-        self.input_excel_file.save(path)
-        self.input_excel_file.close()
+    def modify(self, sheet, cell, txt):
+        self.file[sheet][cell] = txt
+
+    def save_file(self):
+        output = BytesIO()
+        self.file.save(output)
+        output.seek(0)  # Rewind the buffer
+        return output
 
     def contains_any_phrases(self, input_string, phrases_list):
         for phrase in phrases_list:
@@ -29,10 +40,7 @@ class tablaGo:
                 return True
         return False
 
-    def do():
-        print("Hola")
 
-    
 
 def main():    
     input_xlsx = "ficha.xlsx"
