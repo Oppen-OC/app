@@ -10,15 +10,13 @@ import tablaGo as tablaGo
 import unicodedata
 import faiss
 
-from PIL import Image  
 from io import BytesIO
+from PIL import Image  
 from dotenv import load_dotenv
 from pdf2image import convert_from_bytes
-from pdfminer.high_level import extract_text
 from visual.htmlTemplates import css, bot_template
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-
 from langchain_community.vectorstores import FAISS
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain.chains import create_history_aware_retriever, create_retrieval_chain
@@ -31,7 +29,10 @@ from langchain.retrievers import ParentDocumentRetriever
 from langchain.storage import InMemoryStore
 from langchain.schema import Document
 from langchain_community.docstore.in_memory import InMemoryDocstore
-from langchain_experimental.text_splitter import SemanticChunker
+from openpyxl import load_workbook
+from openpyxl.cell.rich_text import TextBlock, CellRichText
+from openpyxl.cell.text import InlineFont
+
 
 
 # Load environment variables
@@ -71,7 +72,6 @@ contextualize_q_prompt = ChatPromptTemplate.from_messages(
 
 qa_system_prompt = """Eres un programa que recibe licitaciones de diferentes entidades, deberas responder todas las preguntas que se te hagan en base estos documentos, \
 
-
     {context}"""
 
 qa_prompt = ChatPromptTemplate.from_messages(
@@ -101,47 +101,6 @@ def get_session_history(session_id: str) -> BaseChatMessageHistory:
 def format_docs(docs: Document) -> str:
     return "\n\n".join(doc.page_content for doc in docs)
 
-def get_pdf_text(pdf_docs) -> str:
-    text = ""  # Initialize the text variable
-
-    for pdf in pdf_docs:
-        try:
-            pdf_bytes = pdf.getvalue()
-        except AttributeError:
-            continue  # Skip if pdf does not have getvalue()
-
-        # Create a PDF file-like object from bytes
-        pdf_file_like = BytesIO(pdf_bytes)
-
-        # Extract text using pdfminer.six high-level API
-        try:
-            pdf_text = extract_text(pdf_file_like)
-            if pdf_text.strip():  # Check if extracted text is not empty
-                text += pdf_text
-            else:
-                raise ValueError("No text extracted, falling back to OCR")
-        except Exception as e:
-            print(f"Error extracting text: {e}")
-            # Convert PDF to images for OCR
-            try:
-                images = convert_from_bytes(pdf_bytes)
-                for image in images:
-                    ocr_text = pytesseract.image_to_string(image)
-                    text += ocr_text
-            except Exception as ocr_e:
-                print(f"Error performing OCR: {ocr_e}")
-                continue  # Skips if OCR fails
-
-    with open("texto.txt", 'w', encoding='utf-8') as file:
-        file.write(text)
-
-    text = normalizar(text)
-
-    return text
-
-import streamlit as st
-from pdf2image import convert_from_bytes
-import pytesseract
 
 def protectExtractPDF(pdf_docs):
     all_texts = []
@@ -255,6 +214,37 @@ def get_text_chunks(text: str) -> list[str]:
     chunks = text_splitter.split_text(text)
     return chunks
 
+def modify_excel(file_path, sheet, str):
+    # Load the existing workbook from the file path
+    wb = load_workbook(file_path)
+    wb.create_sheet(title=sheet)
+    ws = wb[sheet]  # Specify the sheet by name (e.g., "Sheet1")
+
+    # Define fonts for the merged cell
+    # title_font = InlineFont(b=True, color='00FF0000', sz=14)
+    # text_font = InlineFont(b=False, color='00000000', sz=12)
+
+    # Concatenate all strings in the list into a single string
+    #concatenated_text = CellRichText([])
+    #for i, string in enumerate(string_list):
+        #if i % 2 == 0:  # Even index for titles
+            #concatenated_text.append(TextBlock(title_font, f"{string}: "))
+        #else:  # Odd index for descriptions
+            #concatenated_text.append(TextBlock(text_font, f"{string}\n"))
+
+    # Merging cells (A36:D80)
+    ws.merge_cells('A1:D140')
+
+    # Assign the concatenated text to the top-left cell of the merged range
+    ws['A1'].value = str
+    # ws['A36'].font = title_font  # Apply font to the merged text
+
+    # Save the modified Excel file to memory (BytesIO)
+    output = BytesIO()
+    wb.save(output)
+    output.seek(0)  # Rewind the buffer
+
+    return output
 
 def get_retriever():
     embeddings = OpenAIEmbeddings(model="text-embedding-3-large")
@@ -285,10 +275,6 @@ def get_retriever():
 
     return retriever
 
-#def get_vectorstore_local() -> FAISS:
-    #embeddings = OpenAIEmbeddings(model="text-embedding-3-large")
-    #print("GOT LOCAL")
-    #return Chroma.load_local("Otro", embeddings, allow_dangerous_deserialization=True)
 
 def check_password():
     """Returns `True` if the user had the correct password."""
@@ -334,10 +320,18 @@ def main():
     if "conversational_rag_chain" not in st.session_state:
         st.session_state.conversational_rag_chain = None
 
+
     # Configuracion pagina streamlit
     st.set_page_config(page_title="IA Chat", page_icon=Image.open('visual\\proyeco_logo.jpg'))
     st.write(css, unsafe_allow_html=True)
-    st.header("Pregunta sobre tu PDF")
+    st.header("INSTRUCCIONES")
+    st.write("1.- Subir uno o varios archivos en formato PDF al recuadro ubicado a la izquierda de la página.")
+    st.write("2.- Clicar en el Botón de procesar.")
+    st.write("3.- Con el archivo ya procesado (puede tardar un par de minutos) se puede generar la ficha Go o realizar preguntas al chatbot con normalidad.")
+    st.write("4.- De haber generado la ficha Go, clicar en el boton de 'Descargar ficha Go' para obtener el archivo excel.")
+    st.write("5.- Cerrar el programa o continuar chateando con el bot.")
+    st.write("⚠️Recordar que el uso de esta herramienta no es gratuito y su mal uso puede generar gastos imprevistos.")
+    st.write("⚠️El programa sigue en estado de prueba, en caso de no seguir las instrucciones correctamente, reiniciar la página y repetir.")
     user_question = st.text_input(label="Texto", placeholder="Escribe aquí", key='widget')
 
     with st.sidebar:
@@ -350,21 +344,10 @@ def main():
 
                 with st.status("Procesando", expanded=False, state="running"):
                     # Saca el texto del pdf
-                    # raw_text = get_pdf_text(pdf_docs)
-                    # extract_text_with_context(pdf_docs)
                     st.write("Extrayendo imagenes")
                     text_pages = protectExtractPDF(pdf_docs)
 
                     processed_text = remove_similar_columns(" ".join(text_pages))
-
-                    #with open("texto_norm1.txt", 'w', encoding='utf-8') as file:
-                        #file.write(processed_text)
-
-                    #st.write("Normalizando texto")
-                    #processed_text = normalizar(text_pages)
-                    
-                    #with open("texto_norm2.txt", 'w', encoding='utf-8') as file:
-                        #file.write(processed_text)
 
                     # Convierte el texto en chunks
                     text_chunks = get_text_chunks(processed_text)
@@ -400,68 +383,86 @@ def main():
 
         if st.button("Generar ficha go",disabled=st.session_state.button_generarFicha, use_container_width=True):
             st.session_state.button_generarFicha = True
+            list = []
+            text_file_end = None
 
             with st.spinner("Procesando"):
 
-                with open("Output.txt", "w", encoding="utf-8") as text_file:
+                with open("Output.txt", "r+", encoding="utf-8") as text_file:
                     
-                    df = None
                     tabla = None
+                    text_file_end = text_file
 
                     if st.session_state.button_clicked == True:
                         text_file.write("----------------------------------------------------------------------------------------------\n")
-                        tabla = tablaGo.tablaGo("docs\\ficha.xlsx","docs\\prompts.json")
-                        system_questions =  tabla.questions
-                        casillas = tabla.casillas
-                        print(system_questions)
-                        keys_list = list(system_questions.keys())
-                        cont = 0
-                        df = pd.read_excel('docs\\ficha.xlsx', sheet_name='B1 Requisitos licitación')
+                        sheets = ["A1 Resumen", "B1 Requisitos licitación"]
+                        tabla = tablaGo.tablaGo("docs\\ficha.xlsx","docs\\prompts.json", sheets)
+                        aux = ""
 
-                        for key in keys_list:
-                            res = ""
+                        for i, system_questions in enumerate(tabla.questions):
+                            keys_list = system_questions.keys()
+                            casillas = tabla.casillas[i]
+                            cont = 0
 
-                            for question in system_questions[key]:
-                                response = st.session_state.conversational_rag_chain.invoke(
-                                    {"input":question },
-                                    config={"configurable": {"session_id": "123"}},
-                                )["answer"]
+                            for key in keys_list:
+                                res = ""
 
-                                print(f"{key} | {question} | {response}")
-                                if tabla.contains_any_phrases(response, tabla.err):
-                                    print("necesitamos otra")
+                                for question in system_questions[key]:
+                                    response = st.session_state.conversational_rag_chain.invoke(
+                                        {"input":question },
+                                        config={"configurable": {"session_id": "123"}},
+                                    )["answer"]
 
-                                else:
-                                    res = response
+                                    print(f"{key} | {question} | {response}")
+                                    if tabla.contains_any_phrases(response, tabla.err):
+                                        print("necesitamos otra")
 
-                                    # Generar archivo .txt
-                                    text_file.write(f"{key} | {question} | {res}\n")
+                                    else:
+                                        res = response
+
+                                        # Generar archivo .txt
+                                        text_file.write(f"{key} | {question} | {res}\n")
+                                        aux += (f"{key} | {question} | {res}\n")
+                                        text_file.write("----------------------------------------------------------------------------------------------\n")
+                                        aux+=("----------------------------------------------------------------------------------------------\n")
+                                        print("ESCRIBIO EN EL DE TEXTO")
+
+                                        # Generar archivo xlsx
+                                        tabla.modify(sheets[i], casillas[cont], res)
+                                        cont += 1
+                                        
+                                        list.append(key)
+                                        list.append(res)
+
+                                        break
+
+                                if res == "":
+                                    text_file.write(f"{key} | {question} | {"NO SE PUDO ENCONTRAR RESPUESTA"}\n")
+                                    aux+=(f"{key} | {question} | {"NO SE PUDO ENCONTRAR RESPUESTA"}\n")
                                     text_file.write("----------------------------------------------------------------------------------------------\n")
-
-                                    # Generar archivo xlsx
-                                    tabla.modify("B1 Requisitos licitación", casillas[cont], res)
+                                    aux+=("----------------------------------------------------------------------------------------------\n")
+                                    tabla.modify(sheets[i], casillas[cont], "NO SE PUDO ENCONTRAR RESPUESTA") 
                                     cont += 1
 
-                                    break
-
-                            if res == "":
-                                text_file.write(f"{key} | {question} | {"NO SE PUDO ENCONTRAR RESPUESTA"}\n")
-                                text_file.write("----------------------------------------------------------------------------------------------\n")
-                                tabla.modify("B1 Requisitos licitación", casillas[cont], "NO SE PUDO ENCONTRAR RESPUESTA") 
-                                cont += 1
                         print("############################## Proceso terminado ##############################")
+                        tabla.merge("Log", "A1", "P140")
+                        tabla.modify( "Log", "A1",aux) 
                     
                     else:
                         st.warning("Por favor, procese algun documento antes de genesrar la ficha")
 
-            if df.bool is not None and tabla is not None:
+            #if df.bool is not None and tabla is not None:
+
+
+            if True:
                 st.download_button(
                     label="Descargar Ficha Go", 
                     use_container_width=True,
-                    data=tabla.save_file(), 
+                    data=tabla.save_file(),
                     file_name="result_FichaGo.xlsx", 
                     mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
                 )
+
 
     # Procesa input
     if user_question:
