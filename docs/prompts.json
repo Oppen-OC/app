@@ -3,27 +3,27 @@
     "casillas":["B4", "B5", "B6", "B12", "B13", "B15", "B19", "B21", "B23", "B24", "B26", "B28", "B30", "B32"],  
     "preguntas":{
       "Titulo":[
-        "Busca en el documento la palabra 'TÍTULO' y extrae el texto que aparece inmediatamente después.",
-        "Busca en el documento secciones numeradas, y localiza el subtítulo que contenga la palabra 'TÍTULO'. Extrae el contenido que sigue a ese subtítulo.",
-        "Identifica la sección del documento que menciona el 'Objeto del contrato'. Encuentra el subtítulo 'TÍTULO' dentro de esa sección y extrae el texto asociado.",
-        "En un documento oficial, encuentra la sección que inicia con la palabra 'TÍTULO' y que se describe con letras mayúsculas. Extrae todo el texto que se encuentre en esa sección hasta que aparezca un nuevo subtítulo o sección.",
-        "Localiza en el documento cualquier encabezado que esté escrito en mayúsculas y que contenga la palabra 'TÍTULO'. Extrae el texto que aparece inmediatamente después hasta que se encuentre otro encabezado similar."
+        "Busca en el documento la palabra 'TÍTULO' y extrae el texto que aparece inmediatamente después. RESPONDE UNICAMENTE CON EL TITULO",
+        "Busca en el documento secciones numeradas, y localiza el subtítulo que contenga la palabra 'TÍTULO'. Extrae el contenido que sigue a ese subtítulo.RESPONDE UNICAMENTE CON EL TITULO",
+        "Identifica la sección del documento que menciona el 'Objeto del contrato'. Encuentra el subtítulo 'TÍTULO' dentro de esa sección y extrae el texto asociado.RESPONDE UNICAMENTE CON EL TITULO",
+        "En un documento oficial, encuentra la sección que inicia con la palabra 'TÍTULO' y que se describe con letras mayúsculas. Extrae todo el texto que se encuentre en esa sección hasta que aparezca un nuevo subtítulo o sección.RESPONDE UNICAMENTE CON EL TITULO",
+        "Localiza en el documento cualquier encabezado que esté escrito en mayúsculas y que contenga la palabra 'TÍTULO'. Extrae el texto que aparece inmediatamente después hasta que se encuentre otro encabezado similar.RESPONDE UNICAMENTE CON EL TITULO"
       ],
       "organismo":[
-        "Busca en los pies de página del documento menciones a organismos oficiales o entidades responsables. Identifica y extrae el nombre del organismo que aparece en el pie de página.",
-        "Busca en el pie de página del documento cualquier referencia a 'emitido por', 'organismo', 'consejo', 'autoridad', 'administración' o términos similares. Extrae el nombre del organismo mencionado junto a estas palabras clave.",
-        "Localiza en el documento cualquier sección o pie de página que contenga las palabras 'Consejo de Administración', 'Ministerio', o 'Entidad Pública'. Extrae el nombre completo del organismo que aparece en estas secciones.",
-        "Revisa los textos del pie de página del documento en busca de menciones a entidades gubernamentales o públicas. Identifica y extrae el nombre del organismo que ha emitido la licitación.",
-        "Busca en el pie de página del documento menciones a entidades que incluyen términos como 'Consejo', 'Administración', 'Ministerio', o 'Alta Velocidad'. Extrae la información completa relacionada con el organismo que emite la licitación.",
-        "Identifica en el pie de página cualquier referencia cruzada que mencione al organismo encargado de la licitación. Extrae el nombre de dicho organismo y cualquier información relevante adjunta."
+        "Busca en los pies de página del documento menciones a organismos oficiales o entidades responsables. Identifica y extrae el nombre del organismo que aparece en el pie de página. RESPONDE UNICAMENTE CON EL ORGANISMO",
+        "Busca en el pie de página del documento cualquier referencia a 'emitido por', 'organismo', 'consejo', 'autoridad', 'administración' o términos similares. Extrae el nombre del organismo mencionado junto a estas palabras clave. RESPONDE UNICAMENTE CON EL ORGANISMO",
+        "Localiza en el documento cualquier sección o pie de página que contenga las palabras 'Consejo de Administración', 'Ministerio', o 'Entidad Pública'. Extrae el nombre completo del organismo que aparece en estas secciones. RESPONDE UNICAMENTE CON EL ORGANISMO",
+        "Revisa los textos del pie de página del documento en busca de menciones a entidades gubernamentales o públicas. Identifica y extrae el nombre del organismo que ha emitido la licitación. RESPONDE UNICAMENTE CON EL ORGANISMO",
+        "Busca en el pie de página del documento menciones a entidades que incluyen términos como 'Consejo', 'Administración', 'Ministerio', o 'Alta Velocidad'. Extrae la información completa relacionada con el organismo que emite la licitación. RESPONDE UNICAMENTE CON EL ORGANISMO",
+        "Identifica en el pie de página cualquier referencia cruzada que mencione al organismo encargado de la licitación. Extrae el nombre de dicho organismo y cualquier información relevante adjunta. RESPONDE UNICAMENTE CON EL ORGANISMO"
       ],
       "presu":[
-        "Busca en el documento cualquier mención a términos financieros como 'base imponible', 'Total base imponible', 'Importe total', o 'monto'. Extrae un unico valor numérico que este asociado a estos.",
-        "Localiza en el documento cualquier sección que contenga términos relacionados con precios o valores, tales como 'Importe', 'Total', o 'base imponible'. Extrae la cantidad mencionada junto a estos términos.",
-        "Identifica en el documento cualquier frase que incluya las palabras 'Importe total', 'Total base imponible', o 'Valor base'. Extrae el número o monto que aparece junto a estos términos.",
-        "Busca en el documento secciones donde se mencionen montos económicos, como 'base imponible' o 'Importe total'. Extrae la cifra exacta que acompaña a estas menciones.",
-        "Localiza en el documento cualquier mención a 'base imponible', 'Total', 'Importe', o términos similares. Asegúrate de extraer el valor numérico específico que acompaña a estas menciones.",
-        "Revisa las secciones del documento que incluyan términos como 'Total base imponible', 'Importe total', o 'base imponible'. Extrae el valor total indicado en esas secciones."
+        "Busca en el documento cualquier mención a términos financieros como 'base imponible', 'Total base imponible', 'Importe total', o 'monto'. Extrae un unico valor numérico que este asociado a estos. RESPONDE UNICAMENTE CON EL VALOR NUMERICO",
+        "Localiza en el documento cualquier sección que contenga términos relacionados con precios o valores, tales como 'Importe', 'Total', o 'base imponible'. Extrae la cantidad mencionada junto a estos términos. RESPONDE UNICAMENTE CON EL VALOR NUMERICO",
+        "Identifica en el documento cualquier frase que incluya las palabras 'Importe total', 'Total base imponible', o 'Valor base'. Extrae el número o monto que aparece junto a estos términos. RESPONDE UNICAMENTE CON EL VALOR NUMERICO",
+        "Busca en el documento secciones donde se mencionen montos económicos, como 'base imponible' o 'Importe total'. Extrae la cifra exacta que acompaña a estas menciones. RESPONDE UNICAMENTE CON EL VALOR NUMERICO",
+        "Localiza en el documento cualquier mención a 'base imponible', 'Total', 'Importe', o términos similares. Asegúrate de extraer el valor numérico específico que acompaña a estas menciones. RESPONDE UNICAMENTE CON EL VALOR NUMERICO",
+        "Revisa las secciones del documento que incluyan términos como 'Total base imponible', 'Importe total', o 'base imponible'. Extrae el valor total indicado en esas secciones. RESPONDE UNICAMENTE CON EL VALOR NUMERICO"
       ],
       "sol_ec":[
         "Busca en el documento términos relacionados con 'solvencia económica', 'capacidad financiera', 'garantía financiera' o 'criterios de solvencia'. Extrae la información completa relacionada con estos términos.",
@@ -81,10 +81,10 @@
   }
 },
   "B1 Requisitos licitación":{
-    "casillas":["B4", "B5", "B6", "B7", "B8", "B9", "B10", "B13", "B15", "B16", "B18", "B21", "B22", "B23", "B24", "B26", "F1", "F2", "F3", "F4", "F5" ],
+    "casillas":["B4", "B5", "B6", "B7", "B8", "B9", "B10", "B13", "C13", "D13","B15", "B16", "B18", "B21", "B22", "B23", "B24", "B26", "F1", "F2", "F3", "F4", "F5" ],
     "preguntas":{
       "Titulo":[
-        "Objeto del contrato",
+        "Objeto del contrato, RESPONDE UNICAMENTE CON EL NOMBRE EL OBJETO",
         "Busca el 'Titulo contrato', este suele contener una desctripcion de las actividades a realizar y suele encontrarse cerca del cuadro de caracteristicas",
         "Localiza el título del proyecto en el documento. El título generalmente incluye la ubicación del proyecto y se encuentra cerca de un cuadro de características técnicas o detalles del proyecto.",
         "Identifica el título que menciona la ubicación del proyecto, el cual está generalmente acompañado por un cuadro o sección que describe características técnicas o específicas del proyecto.",
@@ -115,8 +115,8 @@
       ],
       "Duracion":[
         "Identifica la duración del proyecto, por favor, responda unicamente en meses",
-        "Consultar la duración especificada para este proyecto",
-        "Explica el periodo de tiempo del proyecto"
+        "Consultar la duración especificada para este proyecto, responda unicamente en meses",
+        "Explica el periodo de tiempo del proyecto, responda unicamente en meses"
       ], 
       "Gar_seg":[
         "Busca y extrae cualquier sección del documento que describa un seguro o una garantía. La sección debe incluir términos como 'Seguro', 'Garantía', 'Suma asegurada' o 'Asegurado', y describir aspectos como montos asegurados, partes involucradas, o riesgos cubiertos. Asegúrate de que el texto esté organizado en varios puntos o subpárrafos",
@@ -126,7 +126,13 @@
         "Identifica y extrae cualquier texto relacionado con seguros o garantías en el documento. La sección debe detallar la suma asegurada, las partes involucradas, y los riesgos específicos cubiertos. El contenido debe estar presentado en un formato estructurado, como una lista o puntos separados."
       ],
       "Fechas":[
-        "Ubicar dentro del documento la fecha de entrega, consulta y visita y escribelo en formato de lista"
+        "Ubicar dentro del documento la fecha de entrega"
+      ],
+      "Fechas1":[
+        "Ubicar dentro del documento la fecha de consulta"
+      ],
+      "Fechas2":[
+        "Ubicar dentro del documento la fecha de visita"
       ],
       "Sol_ec":[
         "Busca en el documento términos relacionados con 'solvencia económica', 'capacidad financiera', 'garantía financiera' o 'criterios de solvencia'. Extrae la información completa relacionada con estos términos.",

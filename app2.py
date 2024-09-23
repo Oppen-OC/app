@@ -30,8 +30,7 @@ from langchain.storage import InMemoryStore
 from langchain.schema import Document
 from langchain_community.docstore.in_memory import InMemoryDocstore
 from openpyxl import load_workbook
-from openpyxl.cell.rich_text import TextBlock, CellRichText
-from openpyxl.cell.text import InlineFont
+
 
 
 
@@ -107,7 +106,7 @@ def protectExtractPDF(pdf_docs):
     pages = []
 
     # Progress bar initialization
-    my_bar = st.progress(0, text="Convirtiendo a texto documento")
+    my_bar = st.progress(0, text="Convirtiendo documento a texto")
 
     # Load all pages from all PDF documents
     for pdf in pdf_docs:
@@ -119,7 +118,7 @@ def protectExtractPDF(pdf_docs):
     # Process each page
     for page_num, image in enumerate(pages):
         # Update progress bar
-        my_bar.progress((page_num + 1) / N_pages, "Convirtiendo a texto documento")
+        my_bar.progress((page_num + 1) / N_pages, "Convirtiendo documento a texto")
 
         # Extract text from the image using Tesseract
         txt = pytesseract.image_to_string(image)
@@ -319,6 +318,8 @@ def main():
         st.session_state.chat_history = []
     if "conversational_rag_chain" not in st.session_state:
         st.session_state.conversational_rag_chain = None
+    if "tabla" not in st.session_state:
+        st.session_state.tabla = None
 
 
     # Configuracion pagina streamlit
@@ -332,7 +333,7 @@ def main():
     st.write("5.- Cerrar el programa o continuar chateando con el bot.")
     st.write("⚠️Recordar que el uso de esta herramienta no es gratuito y su mal uso puede generar gastos imprevistos.")
     st.write("⚠️El programa sigue en estado de prueba, en caso de no seguir las instrucciones correctamente, reiniciar la página y repetir.")
-    user_question = st.text_input(label="Texto", placeholder="Escribe aquí", key='widget')
+    user_question = st.text_input(label="Texto", placeholder="Escribe aquí", key='widget', disabled = not st.session_state.button_clicked)
 
     with st.sidebar:
         st.subheader("Documentos")
@@ -343,7 +344,7 @@ def main():
                 st.session_state.button_clicked = True
 
                 with st.status("Procesando", expanded=False, state="running"):
-                    # Saca el texto del pdf
+                    # Saca el texto del pdft
                     st.write("Extrayendo imagenes")
                     text_pages = protectExtractPDF(pdf_docs)
 
@@ -382,86 +383,91 @@ def main():
                 st.warning("Por favor, suba un documento antes de procesar")
 
         if st.button("Generar ficha go",disabled=st.session_state.button_generarFicha, use_container_width=True):
-            st.session_state.button_generarFicha = True
-            list = []
-            text_file_end = None
-
-            with st.spinner("Procesando"):
+            if st.session_state.button_clicked == True:
+                st.session_state.button_generarFicha = True
+                list = []
 
                 with open("Output.txt", "r+", encoding="utf-8") as text_file:
-                    
-                    tabla = None
-                    text_file_end = text_file
+
 
                     if st.session_state.button_clicked == True:
                         text_file.write("----------------------------------------------------------------------------------------------\n")
                         sheets = ["A1 Resumen", "B1 Requisitos licitación"]
-                        tabla = tablaGo.tablaGo("docs\\ficha.xlsx","docs\\prompts.json", sheets)
+                        st.session_state.tabla = tablaGo.tablaGo("docs\\ficha.xlsx","docs\\prompts.json", sheets)
                         aux = ""
 
-                        for i, system_questions in enumerate(tabla.questions):
-                            keys_list = system_questions.keys()
-                            casillas = tabla.casillas[i]
-                            cont = 0
+                        with st.status("Procesando", expanded=False, state="running"):
+                            
+                            my_bar1 = st.progress(0, text="Página A1")
+                            my_bar2 = st.progress(0, text="Página B1")
 
-                            for key in keys_list:
-                                res = ""
+                            for i, system_questions in enumerate(st.session_state.tabla.questions):
+                                keys_list = system_questions.keys()
+                                casillas = st.session_state.tabla.casillas[i]
+                                cont = 0
 
-                                for question in system_questions[key]:
-                                    response = st.session_state.conversational_rag_chain.invoke(
-                                        {"input":question },
-                                        config={"configurable": {"session_id": "123"}},
-                                    )["answer"]
+                                for j, key in enumerate(keys_list):
+                                    res = ""
 
-                                    print(f"{key} | {question} | {response}")
-                                    if tabla.contains_any_phrases(response, tabla.err):
-                                        print("necesitamos otra")
-
+                                    if(i == 0):
+                                        my_bar1.progress((j+ 1) / len(keys_list), "Página A1")
                                     else:
-                                        res = response
+                                        my_bar1.progress(100, "Página A1")
+                                        my_bar2.progress((j + 1) / len(keys_list), "Página B1")
 
-                                        # Generar archivo .txt
-                                        text_file.write(f"{key} | {question} | {res}\n")
-                                        aux += (f"{key} | {question} | {res}\n")
+                                    for question in system_questions[key]:
+                                        response = st.session_state.conversational_rag_chain.invoke(
+                                            {"input":question },
+                                            config={"configurable": {"session_id": "123"}},
+                                        )["answer"]
+
+                                        print(f"{key} | {question} | {response}")
+                                        if st.session_state.tabla.contains_any_phrases(response, st.session_state.tabla.err):
+                                            print("necesitamos otra")
+
+                                        else:
+                                            res = response
+
+                                                # Generar archivo .txt
+                                            text_file.write(f"{key} | {question} | {res}\n")
+                                            aux += (f"{key} | {question} | {res}\n")
+                                            text_file.write("----------------------------------------------------------------------------------------------\n")
+                                            aux+=("----------------------------------------------------------------------------------------------\n")
+                                            print("ESCRIBIO EN EL DE TEXTO")
+
+                                            # Generar archivo xlsx
+                                            st.session_state.tabla.modify(sheets[i], casillas[cont], res)
+                                            cont += 1
+                                                
+                                            list.append(key)
+                                            list.append(res)
+
+                                            break
+
+                                    if res == "":
+                                        text_file.write(f"{key} | {question} | {"NO SE PUDO ENCONTRAR RESPUESTA"}\n")
+                                        aux+=(f"{key} | {question} | {"NO SE PUDO ENCONTRAR RESPUESTA"}\n")
                                         text_file.write("----------------------------------------------------------------------------------------------\n")
                                         aux+=("----------------------------------------------------------------------------------------------\n")
-                                        print("ESCRIBIO EN EL DE TEXTO")
-
-                                        # Generar archivo xlsx
-                                        tabla.modify(sheets[i], casillas[cont], res)
+                                        st.session_state.tabla.modify(sheets[i], casillas[cont], "NO SE PUDO ENCONTRAR RESPUESTA") 
                                         cont += 1
-                                        
-                                        list.append(key)
-                                        list.append(res)
-
-                                        break
-
-                                if res == "":
-                                    text_file.write(f"{key} | {question} | {"NO SE PUDO ENCONTRAR RESPUESTA"}\n")
-                                    aux+=(f"{key} | {question} | {"NO SE PUDO ENCONTRAR RESPUESTA"}\n")
-                                    text_file.write("----------------------------------------------------------------------------------------------\n")
-                                    aux+=("----------------------------------------------------------------------------------------------\n")
-                                    tabla.modify(sheets[i], casillas[cont], "NO SE PUDO ENCONTRAR RESPUESTA") 
-                                    cont += 1
 
                         print("############################## Proceso terminado ##############################")
-                        tabla.merge("Log", "A1", "P140")
-                        tabla.modify( "Log", "A1",aux) 
+                        st.session_state.tabla.merge("Log", "A1", "P140")
+                        st.session_state.tabla.modify( "Log", "A1",aux) 
+                        st.rerun()
                     
-                    else:
-                        st.warning("Por favor, procese algun documento antes de genesrar la ficha")
-
-            #if df.bool is not None and tabla is not None:
+            else: st.warning("Por favor, procese algun documento antes de genesrar la ficha")
 
 
-            if True:
-                st.download_button(
-                    label="Descargar Ficha Go", 
-                    use_container_width=True,
-                    data=tabla.save_file(),
-                    file_name="result_FichaGo.xlsx", 
-                    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-                )
+        if st.session_state.button_generarFicha:
+            st.download_button(
+                label="Descargar Ficha Go", 
+                use_container_width=True,
+                data=st.session_state.tabla.save_file(),
+                file_name="result_FichaGo.xlsx", 
+                mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            )
 
 
     # Procesa input

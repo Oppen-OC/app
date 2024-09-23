@@ -32,11 +32,7 @@ class tablaGo:
 
 
     def modify(self, sheet, cell, txt):
-        if sheet not in self.sheets:
-            self.file.create_sheet(title=sheet)
-            self.file[sheet][cell] = txt
-        else:
-            self.file[sheet][cell] = txt
+        self.file[sheet][cell] = txt
 
     def save_file(self):
         output = BytesIO()
