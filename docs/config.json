@@ -2,15 +2,26 @@
     "version": "1.0",
     "description": "Configuration for an LLM that processes government tenders and responds to inquiries in a specific format.",
     "model": {
-      "version": "gpt-4o-mini",
       "name": "Proyeco Chatbot",
       "parameters": {
-        "max_tokens": 1500,
+        "version": "gpt-4o-mini",
+        "max_tokens":2000,
         "temperature": 1,
         "top_p": 1,
         "frequency_penalty": 0.2,
-        "presence_penalty": 0.2
+        "presence_penalty": 0.2,
+        "embeddings":"text-embedding-3-large"
+      },
+      "search":{
+        "k": 15,
+        "search_type": "mmr",
+        "father_chunk_size": 4096,
+        "father_overlap":128,
+        "child_chunk_size":1024,
+        "child_overlap":32,
+        "score":0.80
       }
+
     }
     
   }

@@ -1,0 +1,47 @@
+FUNCIONAMIENTO 
+
+El programa esta diseñado mayoritariamente en base a streamlit para el diseño del front y langchain para el diseño del back.
+
+Los archivos importantes contenidos dentro del proyecto son:
+    condif.json: Sirve para modificar la mayoría de parametros del LLM y del retriever de langchain 
+    prompts.json: Contiene los propmts que se envian al momento de generar la ficha go
+    app2.py: Contiene la mayoría de funcionalidades del programa, archivo principal
+    tablaGo.py: Objeto tablaGo, contiene funcionalidades para poder manejar la tablaGo generada de forma mas comoda
+    run.bat: Ejecuta el programa 
+
+
+ASPECTOS IMPORTANTES DE app2
+
+Bibliotecas de procesamiento de imágenes
+    pytesseract: Se utiliza para la extracción de texto desde imágenes (OCR).
+    PIL (Python Imaging Library): Para cargar y manipular imágenes.
+    pdf2image: Convierte archivos PDF en imágenes para su posterior procesamiento.
+
+Bibliotecas de procesamiento de lenguaje natural:
+    nltk: Procesamiento de texto como tokenización y análisis semántico.
+    langchain: Se utiliza para integrar modelos de lenguaje y realizar análisis de texto avanzado.
+
+FAISS:
+    Se utiliza para realizar búsquedas eficientes en grandes conjuntos de datos de vectores. Esto probablemente ayuda a indexar y buscar en colecciones de documentos o frases.
+
+Streamlit:
+    Sirve como la plataforma para crear una interfaz web interactiva donde el usuario puede subir archivos, ver los resultados del procesamiento y obtener respuestas.
+
+
+Flujo de Ejecución del Programa
+Interfaz de Usuario: 
+    El programa utiliza Streamlit para construir una interfaz gráfica donde los usuarios pueden subir los PDFs y utilizar el chatbot. Los archivos que se suben son convertidos a un formato manejable (como imágenes o texto), y luego procesados.
+
+Conversión de PDF a Imágenes:
+    Si se sube un archivo PDF, primero es convertido en imágenes mediante la biblioteca pdf2image. Esto se hace para permitir la extracción de texto en pasos posteriores.
+
+Extracción de Texto:
+    Las imágenes (ya sean subidas directamente o convertidas desde un PDF) se procesan con pytesseract, que aplica técnicas OCR para extraer el texto incrustado en ellas.
+    Para los documentos de texto, se utilizan varias técnicas de NLP, como tokenización o análisis de entidades, con ayuda de nltk.
+    Análisis de Texto con Modelos de Lenguaje: El programa parece utilizar langchain para interactuar con los modelos de lenguaje (probablemente modelos de OpenAI como GPT) con el objetivo de analizar el texto extraído, realizar búsquedas contextuales o responder a preguntas basadas en el contenido del documento.
+
+Indexación y Búsqueda (FAISS): 
+    Una vez extraído el texto, el programa utiliza FAISS para indexar las representaciones vectoriales del texto, lo que permite realizar búsquedas rápidas y eficientes sobre grandes conjuntos de datos.
+
+Resultado: 
+    La información procesada se puede aprovechar mediante el chatbot o la generación de la ficha go. 

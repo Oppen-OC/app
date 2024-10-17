@@ -1,233 +1,219 @@
 ----------------------------------------------------------------------------------------------
-Titulo | Busca en el documento la palabra 'TÍTULO' y extrae el texto que aparece inmediatamente después. RESPONDE UNICAMENTE CON EL TITULO | DISPOSICIONES GENERALES
+Titulo | Busca en el texto secciones numeradas, y localiza el subtítulo que contenga la palabra 'TÍTULO'. Extrae el contenido que sigue a ese subtítulo.RESPONDE UNICAMENTE CON EL TITULO | TITULO III. EJECUCIÓN Y CONCLUSIÓN DEL CONTRATO
 ----------------------------------------------------------------------------------------------
-organismo | Busca en los pies de página del documento menciones a organismos oficiales o entidades responsables. Identifica y extrae el nombre del organismo que aparece en el pie de página. RESPONDE UNICAMENTE CON EL ORGANISMO | Consejería de Movilidad y Transformación Digital
+Organismo | Busca menciones a organismos oficiales o entidades responsables. Identifica y extrae el nombre del organismo que aparece en el pie de página. RESPONDE UNICAMENTE CON EL ORGANISMO | Junta de Castilla y León
 ----------------------------------------------------------------------------------------------
-presu | Busca en el documento cualquier mención a términos financieros como 'base imponible', 'Total base imponible', 'Importe total', o 'monto'. Extrae un unico valor numérico que este asociado a estos. RESPONDE UNICAMENTE CON EL VALOR NUMERICO | 148.948,58
+Presu | Necesito que encuentres el precio total del proyecto sin impuestos, este suele ser el segundo monto economico mas alto, para ello busca cualquier mención a términos financieros como 'base imponible', 'Total base imponible', 'Importe' o 'monto'. Extrae un unico valor numérico que este asociado a estos. RESPONDE UNICAMENTE CON EL VALOR NUMERICO | 1756889.52
 ----------------------------------------------------------------------------------------------
-sol_ec | Busca en el documento términos relacionados con 'solvencia económica', 'capacidad financiera', 'garantía financiera' o 'criterios de solvencia'. Extrae la información completa relacionada con estos términos. | B) Acreditación de las solvencias económica y financiera y técnica 0, en su caso, certificado de clasificación del contratista expedido por el órgano competente. 
-B.1. En los contratos en los que por su cuantía no sea exigible el requisito de clasificación, los licitadores acreditarán su solvencia económica, financiera y técnica por los medios que se precisen en el cuadro de características del presente pliego. 
-B.2. En los contratos en los que por su cuantía sea exigible el requisito de clasificación, se aportará certificado de clasificación o copia compulsada del mismo. Respecto a los no españoles de Estados miembros de la Unión Europea y de Estados signatarios del Acuerdo sobre el Espacio Económico Europeo que no estén clasificados, será suficiente que acrediten ante el órgano de contratación su capacidad económica y financiera y técnica, conforme a lo estipulado en los artículos 87 y 88 de la LCSP, por los medios que se precisen en el cuadro de características del presente pliego.
-B.3. La presentación por el licitador del certificado de clasificación, o copia auténtica del mismo expedida por órgano competente, le eximirá de presentar la documentación acreditativa de su solvencia económica, financiera y técnica si así se establece en el cuadro de características que encabeza este pliego.
+Sol_ec | Necesito saber información sobre la solvencia economica del texto, para ello busca en el texto términos relacionados con 'solvencia económica', 'capacidad financiera', 'garantía financiera' o 'criterios de solvencia'. Extrae la información completa relacionada con estos términos. | Para acreditar la solvencia necesaria para celebrar un contrato determinado, el empresario podrá basarse en la solvencia y medios de otras entidades, siempre que demuestre que durante toda la duración de la ejecución del contrato.
 
-Para la determinación de la solvencia económica, financiera y técnica o profesional en caso de UTE, se acumularán las características acreditadas para cada uno de los integrantes de la misma.
+La solvencia exigida en los casos de requerir clasificación será la siguiente:
 
-9. INTEGRACIÓN DE LA SOLVENCIA CON MEDIOS EXTERNOS.
-Para acreditar la solvencia necesaria para celebrar un contrato determinado, el empresario podrá basarse en la solvencia y medios de otras entidades, independientemente de la naturaleza jurídica de los vínculos que tengan con ellas, siempre que demuestre que durante toda la duración de la ejecución del contrato dispondrá efectivamente de esa solvencia y medios, y la entidad a la que recurra no esté incursa en una prohibición de contratar.
-----------------------------------------------------------------------------------------------
-sol_tec | Encuentra información sobre la solvencia técnica requerida o demostrada en el documento. | B) SOBRE N2 2
-Titulo: DOCUMENTACION TECNICA RELATIVA A LOS CRITERIOS DE ADJUDICACION VALORABLES MEDIANTE UN JUICIO DE VALOR
-Contenido:
-Se aportarán los documentos que permitan valorar la oferta de acuerdo con los criterios de adjudicación ponderables en función de un juicio de valor indicados en el cuadro de características y en el Anexo n2 5 de este pliego:
-1. Memoria (en documento aparte y con un máximo de 15 hojas en A4 por las dos caras). (30 Pag.)
-En este documento se realizará un estudio del estado de las obras ejecutadas, analizando las bondades y defectos y/o reparaciones a realizar; así como un resumen pormenorizado y justificado de los trabajos a realizar para la completa ejecución de las obras y su entrega al uso público.
+Medios de Solvencia económica y financiera:
+- Cifra anual de negocio
+Acreditación de la solvencia económica y financiera: Volumen de negocios del licitador referido al año de mayor volumen de negocio de los tres últimos disponibles en función de las fechas de constitución o de inicio de actividades del empresario sea como mínimo 9.433.028,97 euros. (Importe calculado sobre el valor anual medio de la ejecución de obra)
 
-Para la determinación de la solvencia económica, financiera y técnica o profesional en caso de UTE, se acumularán las características acreditadas para cada uno de los integrantes de la misma.
-----------------------------------------------------------------------------------------------
-equipo | Busca en el documento menciones a 'equipo humano', 'personal requerido', 'equipo de trabajo' o 'recursos humanos'. Extrae la información completa relacionada con los requisitos de personal para el proyecto. | 2.3.1 Mantenimiento del Jefe de Obra
-El licitador se compromete a mantener al Jefe de Obra propuesto durante toda la obra o, en su defecto, a sustituirlo por otro que cumpla el criterio 2.3.1 con las mismas características ofertadas, previa autorización por el órgano de contratación. La ausencia de presentación de esta documentación junto con la oferta se considera insubsanable a los efectos de valoración de este criterio.
+Se han cumplido los trámites precisos para asegurar la existencia de crédito adecuado y suficiente para atender las obligaciones económicas que se deriven de este contrato.
 
-2.3.2 Experiencia del Encargado de Obra
-El licitador podrá proponer un Encargado de Obra e indicará su experiencia en obra civil a la fecha de presentación de ofertas. Junto con la oferta, en el sobre nº 3, con objeto de acreditar la experiencia laboral, se presentará el certificado de vida laboral y “curriculum vitae” con declaración responsable de su veracidad y compromiso de mantenimiento del encargado de obra durante toda la obra.
+Recogida en el cuadro de características de este pliego, acreditará su solvencia económica y financiera y solvencia técnica para contratar. En tales casos, el empresario podrá acreditar su solvencia indistintamente mediante su clasificación como contratista de obras en el grupo o subgrupo de clasificación correspondiente al contrato o bien acreditando el cumplimiento de los requisitos específicos de solvencia exigidos.
 
-- Encargado de obra: Experiencia laboral mínima de 5 años en obra civil. Para acreditar la experiencia mínima laboral, se exige la presentación del título académico, el certificado de vida laboral y currículo vitae con declaración responsable de su veracidad.
+B. Solvencia económica y financiera.
 
-El trabajo realizado como Jefe de Obra, de igual o similar naturaleza que los que constituyen el objeto del contrato, se acreditará mediante certificado de buena ejecución que se ajustará al modelo del anexo n2 8. En el plazo establecido en la cláusula 22.3, deberá acreditarse la experiencia mínima laboral, mediante la presentación del título académico, el certificado de vida laboral y currículo vitae con declaración responsable de su veracidad.
+La insuficiencia de la clasificación exigida podrá suplirse mediante la integración de la solvencia con medios externos, siempre y cuando el licitador haya obtenido alguna de las clasificaciones establecidas para obras.
+----------------------------------------------------------------------------------------------
+Sol_tec | Encuentra información sobre la solvencia técnica requerida o demostrada en el texto. | Para acreditar la solvencia técnica, se debe presentar una relación de las obras ejecutadas en los últimos cinco años, avalada por certificados de buena ejecución. Estos certificados deben indicar el importe, fechas y lugar de ejecución de las obras, así como precisar si se realizaron conforme a las reglas aplicables. Además, se puede recurrir a la solvencia y medios de otras entidades, demostrando que se mantendrán durante la ejecución del contrato. La capacidad técnica y profesional también se puede acreditar mediante la clasificación como contratista de obras en el grupo o subgrupo correspondiente al contrato o cumpliendo con los requisitos específicos establecidos.
+----------------------------------------------------------------------------------------------
+Equipo | Necesito saber cual es el equipo humano minimo para realizar un proyecto, para ello busca en el texto instancias donde se enumere las exigencias de personal. | - Jefe del Equipo: Ingeniero de Caminos, Canales y Puertos o Máster en Ingeniería de Caminos, Canales y Puertos.
+- Ayudante del Jefe de Obra: Ingeniero de Caminos, Canales y Puertos, Máster en Ingeniería de Caminos o el título que habilite para el ejercicio de esta profesión regulada, Ingeniero Civil o Ingeniero Técnico de Obras Públicas con experiencia en obra civil.
+- Ayudante del Encargado. 
 
-El licitador se compromete a mantener al ayudante al Jefe de Obra propuesto durante toda la obra o, en su defecto, a sustituirlo por otro que cumpla el criterio 2.4.1 hasta completar las características ofertadas, previa autorización por el órgano de contratación.
-
-2.4.2 Características del ayudante al Encargado
-El licitador podrá comprometerse a contratar un ayudante al Encargado con experiencia en obra civil; esa experiencia laboral se valorará conforme al número de años (E) siguiente (redondeándose E al número entero más cercano):
-- 0 < E < 5, 0 puntos.
-- 5 < E < 10, 1 punto.
-- 10 < E < 15, 2 puntos.
-- E > 15, 3 puntos.
-
-Junto con la oferta, en el sobre nº 3, se presentará el certificado de vida laboral y currículo vitae con declaración responsable de su veracidad, así como el compromiso de mantenimiento del encargado de obra durante toda la obra. La ausencia de presentación de esta documentación junto con la oferta se considera insubsanable a los efectos de valoración de este criterio.
+Además, se menciona el compromiso de estabilidad laboral para al menos el Jefe de Obra y el Encargado de Obra, quienes deben estar contratados con carácter indefinido.
 ----------------------------------------------------------------------------------------------
-plan_c | Busca en el documento cualquier mención a un 'plan de calidad'. Responde con 'sí' si se encuentra, de lo contrario, responde 'no'. | sí
+Form_pago | Busca y extrae cualquier sección del texto que describa la forma de pago, se conciso con tu respuesta. | A los efectos de pago, la Administración expedirá mensualmente, en los primeros diez (10) días siguientes al mes que correspondan, las certificaciones que comprendan la obra ejecutada durante dicho periodo de tiempo. El contratista dispondrá de un plazo de diez (10) días hábiles, contados a partir de la recepción de la relación valorada que debe remitirle el facultativo director de la obra. Pagos parciales. Periodicidad de las certificaciones: Según la cláusula n* 28 del PCAP. Abonos a cuenta por operaciones preparatorias/valoraciones parciales: Sí.
 ----------------------------------------------------------------------------------------------
-c_sol_tec | Busca en el documento cualquier mención a un 'plan de calidad'. Responde con 'sí' si se encuentra, de lo contrario, responde 'no'. | no
+Plan_c | Busca en el texto cualquier mención a un 'plan de calidad'. Responde con 'sí' si se encuentra, de lo contrario, responde 'no'. | no
 ----------------------------------------------------------------------------------------------
-rentabilidad | Busca en el documento cualquier mención a la palabra 'rentabilidad' o frases como 'cumple con la rentabilidad'. Responde con 'sí' si se menciona que cumple, de lo contrario, responde 'no'. | no
+C_sol_tec | Busca en el texto cualquier mención a un 'plan de calidad'. Responde con 'sí' si se encuentra, de lo contrario, responde 'no'. | no
 ----------------------------------------------------------------------------------------------
-criterios_etic | Busca en el documento cualquier mención a 'criterios éticos', 'principios éticos', 'normas éticas' o 'cumplimiento ético'. Responde con 'sí' si se mencionan criterios éticos, de lo contrario, responde 'no'. | no
+Rentabilidad | Busca en el texto cualquier mención a la palabra 'rentabilidad' o frases como 'cumple con la rentabilidad'. Responde con 'sí' si se menciona que cumple, de lo contrario, responde 'no'. | no
 ----------------------------------------------------------------------------------------------
-Titulo | Objeto del contrato, RESPONDE UNICAMENTE CON EL NOMBRE EL OBJETO | Elaboración del Proyecto Técnico y ejecución de las obras correspondientes.
+Criterios_etic | Busca en el texto cualquier mención a 'criterios éticos', 'principios éticos', 'normas éticas' o 'cumplimiento ético'. Responde con 'sí' si se mencionan criterios éticos, de lo contrario, responde 'no'. | no
 ----------------------------------------------------------------------------------------------
-Organismo | Identifica el nombre del organismo o cliente responsable de la emisión de la licitación, esta suele ser una agencia gubernamental identificada por un acronimo | JCL (Junta de Castilla y León)
+Titulo | Objeto del contrato, RESPONDE UNICAMENTE CON EL NOMBRE EL OBJETO | 1.2-P-16B/T. Terminación de obras Variante de Guardo. Tramo B. Ctra. CL-626, de L.C.A. de Asturias a Aguilar de Campoo Por La Robla y Guardo. Tramo: P.K. 0+000 al 1+500
 ----------------------------------------------------------------------------------------------
-Exp_int | Identifica el nombre del organismo o cliente responsable de la emisión de la licitación, esta suele ser una agencia gubernamental identificada por un acronimo | NO SE PUDO ENCONTRAR RESPUESTA
+Organismo | Identifica el nombre del organismo o cliente responsable de la emisión de la licitación, esta suele ser una agencia gubernamental identificada por un acronimo | Junta de Castilla y León.
 ----------------------------------------------------------------------------------------------
-Presu | Busca en el documento cualquier mención a términos financieros como 'base imponible', 'Total base imponible', 'Importe total', o 'monto'. Extrae un unico valor numérico que este asociado a estos. | 13.950.401,73
+Exp_int | Busca en el texto un codigo numerico normalmente llamado 'codigo interno' o 'Referencia' | CÓDIGO: A07008861
 ----------------------------------------------------------------------------------------------
-Tipo_entr | Consultar el tipo de entrega especificada para el proyecto, suele ser de forma 'telemátic' o 'física' | telemática
+Presu | Busca en el texto cualquier mención a términos financieros como 'base imponible', 'Total base imponible', 'Importe total', o 'monto'. Extrae un unico valor numérico que este asociado a estos. | 9433028.97
+----------------------------------------------------------------------------------------------
+Tipo_entr | Consultar el tipo de entrega especificada para el proyecto, suele ser de forma 'telemática' o 'física' | La respuesta sobre el tipo de entrega para el proyecto específico se encuentra detallada en los documentos de licitación correspondientes. Please refer to the specific documentation for accurate information regarding delivery details.
 ----------------------------------------------------------------------------------------------
 Duracion | Identifica la duración del proyecto, por favor, responda unicamente en meses | 29 meses
 ----------------------------------------------------------------------------------------------
-Gar_seg | Busca y extrae cualquier sección del documento que describa un seguro o una garantía. La sección debe incluir términos como 'Seguro', 'Garantía', 'Suma asegurada' o 'Asegurado', y describir aspectos como montos asegurados, partes involucradas, o riesgos cubiertos. Asegúrate de que el texto esté organizado en varios puntos o subpárrafos | 3. Pólizas de seguros
-El contratista está obligado a concertar a su costa, antes del inicio de las obras y hasta la finalización del plazo de garantía, las pólizas de seguros señaladas en el cuadro de características, por el importe correspondiente.
+Gar_seg | Busca y extrae cualquier sección del texto que describa un seguro o una garantía. La sección debe incluir términos como 'Seguro', 'Garantía', 'Suma asegurada' o 'Asegurado', y describir aspectos como montos asegurados, partes involucradas, o riesgos cubiertos. Asegúrate de que el texto esté organizado en varios puntos o subpárrafos | 2. Pólizas de seguros  
+- El contratista está obligado a concertar a su costa, antes del inicio de las obras y hasta la finalización del plazo de garantía, las pólizas de seguros señaladas en el cuadro de características, por el importe correspondiente.  
+- En la recepción de la obra, deberá acreditarse que la póliza tiene vigencia por el período de garantía de la misma y que la prima correspondiente se encuentra totalmente pagada.
 
-En la recepción de la obra, deberá acreditarse que la póliza tiene vigencia por el periodo de garantía de la misma y que la prima correspondiente se encuentra totalmente pagada.
-
-4. Materiales y control de calidad
-Los materiales utilizados en la ejecución de las obras deberán cumplir con los requisitos establecidos en los pliegos y ser conformes a las especificaciones técnicas que se determinen. Se requerirá a tal efecto, una garantía en relación a los materiales suministrados, que garantice su calidad y resistencia para el fin que se destinarán.
-
-5. Garantías
-- Garantía definitiva: El adjudicatario deberá prestar una garantía definitiva que se determinará conforme al artículo 108 de la LCSP. 
-- Justificación de su exigencia: En el caso de que la oferta del adjudicatario resultara inicialmente incursa en presunción de anormalidad, se establece la exigencia de que se preste una garantía complementaria de hasta un 5 por ciento del precio final ofertado (IVA excluido).
-- La contratación y presentación de garantías deben realizarse según lo establecido en los artículos correspondientes de la normativa vigente.
+15. GARANTÍAS  
+- GARANTÍA PROVISIONAL: No  
+- GARANTÍA DEFINITIVA: No  
+- GARANTÍA COMPLEMENTARIA: Sí  
+  - Porcentaje de la garantía complementaria: 5,00 %  
+  - Justificación de su exigencia: En el caso de que la oferta del adjudicatario resultara inicialmente incursa en presunción de anormalidad se establece la exigencia de que se preste una garantía complementaria de hasta un 5 por ciento del precio final ofertado (IVA excluido), pudiendo alcanzar la garantía total un 10 por ciento.
 ----------------------------------------------------------------------------------------------
-Fechas | Ubicar dentro del documento la fecha de entrega | NO SE PUDO ENCONTRAR RESPUESTA
+Fechas | Necesito la fecha de entrega del texto, para ello ubica dentro del texto la fecha de entrega | en el plazo de veintiún días naturales desde la notificación de la adjudicación.
 ----------------------------------------------------------------------------------------------
-Fechas1 | Ubicar dentro del documento la fecha de consulta | La fecha de consulta es 30/05/2023.
+Fechas1 | Ubicar dentro del texto la fecha de consulta | NO SE PUDO ENCONTRAR RESPUESTA
 ----------------------------------------------------------------------------------------------
-Fechas2 | Ubicar dentro del documento la fecha de visita | NO SE PUDO ENCONTRAR RESPUESTA
+Fechas2 | Ubicar dentro del texto la fecha de visita | NO SE PUDO ENCONTRAR RESPUESTA
 ----------------------------------------------------------------------------------------------
-Sol_ec | Busca en el documento términos relacionados con 'solvencia económica', 'capacidad financiera', 'garantía financiera' o 'criterios de solvencia'. Extrae la información completa relacionada con estos términos. | **11. CRITERIOS DE SOLVENCIA Y CLASIFICACIÓN**
+Sol_ec | Busca en el texto términos relacionados con 'solvencia económica', 'capacidad financiera', 'garantía financiera' o 'criterios de solvencia'. Extrae la información completa relacionada con estos términos. | B. Solvencia económica y financiera.  
+C. Capacidad técnica y profesional.
 
-Clasificación exigida: Sí  
-Grupo/s Subgrupo/s Categoría/s: B 3 6  
-
-Para los empresarios no españoles de estados miembros de la Unión Europea, que no estén clasificados, la solvencia exigida en los casos de requerir clasificación será la siguiente:
-
-**Medios de Solvencia económica y financiera:**
+La solvencia exigida en los casos de requerir clasificación será la siguiente:
+Medios de Solvencia económica y financiera:
 - Cifra anual de negocio
-
-**Acreditación de la solvencia económica y financiera:** 
-Volumen de negocios del licitador referido al año de mayor volumen de negocio de los tres últimos disponibles en función de las fechas de constitución o de inicio de actividades del empresario, sea como mínimo 9.433.028,97 euros. (Importe calculado sobre el valor anual medio de la ejecución de obra)
-
-Dicho volumen se acreditará por medio de las cuentas anuales aprobadas y depositadas en el Registro Mercantil, si el empresario estuviera inscrito en dicho registro, y en caso contrario por las depositadas en el registro oficial en que deba estar inscrito. Los empresarios individuales no inscritos en el Registro Mercantil acreditarán su volumen anual de negocios mediante sus libros de inventarios y cuentas anuales legalizados por el Registro Mercantil o declaración del empresario indicando el volumen de negocios global de la empresa.
-
-**Medios de solvencia técnica:**
-- Trabajos realizados
-
-**Acreditación de la solvencia técnica:** 
-Relación de las obras ejecutadas en el curso de los cinco últimos años, avalada por certificados de buena ejecución. Estos certificados indicarán el importe, las fechas y el lugar de ejecución de las obras y se precisará si se realizaron según las reglas por las que se rige la profesión y se llevaron normalmente a buen término. Los certificados de buena ejecución de las obras incluidas en la relación cuyo destinatario fuese una entidad del sector público serán comunicados directamente al órgano de contratación por la entidad contratante de las obras.
+Acreditación de la solvencia económica y financiera: Volumen de negocios del licitador referido al año de mayor volumen de negocio de los tres últimos disponibles en función de las fechas de constitución o de inicio de actividades del empresario sea como mínimo 9.433.028,97 euros. (Importe calculado sobre el valor anual medio de la ejecución de obra)
 ----------------------------------------------------------------------------------------------
-Sol_tec | Busca y extrae cualquier sección del documento que describa los requisitos de solvencia técnica. La sección debe incluir menciones a documentos o informes que el licitador debe presentar, como la relación de servicios o trabajos realizados en los últimos años. Debe también incluir criterios mínimos de importe anual acumulado y detalles sobre el personal técnico requerido, mencionando roles específicos y puestos técnicos. | **2.4 SOLVENCIA TÉCNICA**
-
-Para acreditar la solvencia técnica, los licitadores deberán presentar la siguiente documentación:
-
-1. **Relación de trabajos realizados**: 
-   - Se deberá presentar una relación de los trabajos ejecutados en el curso de los cinco últimos años. Esta relación debe estar avalada por certificados de buena ejecución que indiquen el importe, las fechas y el lugar de ejecución de las obras.
-   - Es imprescindible que se precise si las obras se realizaron según las reglas por las que se rige la profesión y si se llevaron normalmente a buen término.
-
-2. **Criterios mínimos**:
-   - El importe anual acumulado de los trabajos realizados deberá ser como mínimo de 1.000.000 euros.
-   - En caso de que el porcentaje de ejecución acumulado supere el 70% del contrato, este se considerará como suficiente para cumplir con este criterio.
-
-3. **Personal Técnico**:
-   - Serán requeridos los siguientes roles y puestos técnicos:
-     - Un Jefe de Obra con un mínimo de 5 años de experiencia en proyectos similares.
-     - Un Encargado de Obra con al menos 5 años de experiencia en obra civil.
-     - Experiencia adicional en funciones relacionadas con asistentes o ayudantes técnicos será valorada, particularmente si tienen una trayectoria similar en proyectos previos.
-
-La presentación de esta documentación es fundamental para demostrar la capacidad técnica del licitador y su idoneidad para llevar a cabo el proyecto objeto del contrato. La ausencia de dicha documentación se considera insubsanable a efectos de valoración.
+Sol_tec | Busca y extrae cualquier sección del texto que describa los requisitos de solvencia técnica. La sección debe incluir menciones a textos o informes que el licitador debe presentar, como la relación de servicios o trabajos realizados en los últimos años. Debe también incluir criterios mínimos de importe anual acumulado y detalles sobre el personal técnico requerido, mencionando roles específicos y puestos técnicos. | Acreditación de la solvencia técnica: Relación de las obras ejecutadas en el curso de los cinco últimos años, avalada por certificados de buena ejecución. Estos certificados indicarán el importe, las fechas y el lugar de ejecución de las obras y se precisará si se realizaron según las reglas por las que se rige la obligación. Se deberá presentar una relación de servicios o trabajos realizados que incluya criterios mínimos de importe anual acumulado. Además, se requerirá información sobre el personal técnico necesario para el desarrollo del contrato, especificando roles como ingenieros, arquitectos y otros puestos técnicos requeridos para asegurar el cumplimiento de la ejecución del proyecto.
 ----------------------------------------------------------------------------------------------
-Equipo | Busca en el documento menciones a 'equipo humano', 'personal requerido', 'equipo de trabajo' o 'recursos humanos'. Extrae la información completa relacionada con los requisitos de personal para el proyecto. | **2.3 REQUISITOS DE PERSONAL PARA EL PROYECTO**
+Equipo | Necesito saber cual es el equipo humano minimo para realizar un proyecto, para ello busca en el texto instancias donde se enumere las exigencias de personal. | El equipo redactor del proyecto deberá estar compuesto, al menos por:
+- Jefe del Equipo: Ingeniero de Caminos, Canales y Puertos o Máster en Ingeniería de Caminos, Canales y Puertos.
 
-1. **Jefe de Obra**:
-   - Se requiere la designación de un Jefe de Obra que deberá mantener su compromiso durante toda la duración del proyecto.
-   - El Jefe de Obra debe tener una experiencia mínima de 5 años en obras de naturaleza similar a las que constituyen el objeto del contrato.
-   - Para acreditar esta experiencia, se deberá presentar el título académico, el certificado de vida laboral y el currículum vitae con declaración responsable de su veracidad.
+Además, se sugiere la contratación de un ayudante al Jefe de Obra que cumpla con las siguientes características:
+- Ingeniero de Caminos, Canales y Puertos, Máster en Ingeniería de Caminos, o el título que habilite para el ejercicio de esta profesión regulada según las directivas comunitarias, o Ingeniero Civil o Ingeniero Técnico de Obras Públicas, valorando su experiencia en obra civil.
 
-2. **Encargado de Obra**:
-   - Los licitadores pueden proponer un Encargado de Obra, indicando su experiencia en obra civil hasta la fecha de presentación de ofertas.
-   - Se debe presentar el certificado de vida laboral y el currículum vitae con declaración responsable para acreditar la experiencia laboral y asegurar el compromiso de mantener al Encargado durante toda la obra.
-
-3. **Ayudantes**:
-   - Se pueden incluir Ayudantes al Jefe de Obra y Ayudantes al Encargado de Obra, quienes deben cumplir con criterios mínimos de experiencia y cualificación en función de las características del proyecto.
-
-4. **Certificación**:
-   - Todo trabajo realizado por el Jefe de Obra debe ser respaldado por un certificado de buena ejecución que se ajuste al modelo del anexo correspondiente.
-   - La ausencia de presentación de esta documentación junto con la oferta se considera insubsanable a los efectos de valoración.
-
-La selección del personal deberá cumplir con las capacidades y características descritas, asegurando así que el equipo asignado tenga la idoneidad necesaria para ejecutar las obras conforme a los requisitos contractuales establecidos.
+Se establece también que el adjudicatario debe comprometerse a que al menos el Jefe de Obra y el Encargado de Obra estén contratados con carácter indefinido para asegurar estabilidad laboral.
 ----------------------------------------------------------------------------------------------
-Crit_adj | X | Parece que has ingresado "X". Si necesitas asistencia o tienes alguna pregunta, por favor házmelo saber. Estoy aquí para ayudarte.
+ncargado de Obra deben gozar de estabilidad laboral, es decir, estar contratados con carácter indefinido.
 ----------------------------------------------------------------------------------------------
-Ofer_tec | Busca y extrae cualquier sección del documento que describa criterios de oferta técnica. Asegúrate de que el texto esté organizado en formato de lista o puntos numerados. | **Criterios de oferta técnica:**
+Crit_adj | Busca y extrae cualquier sección del texto que describa criterios de adjudicación. La sección debe incluir términos como 'TÉCNICOS', 'POR FÓRMULAS', junto con porcentajes o ponderaciones. Asegúrate de que el texto esté organizado en un formato de lista o con puntos claramente definidos. | - Referencia concreta a las partidas establecidas del PCAP: 0 a 1 punto
+- Concreción en la exposición de los documentos: 0 a 1 punto
+- Coherencia entre documentos: 0 a 3 puntos
+- Calidad y grado de definición de la solución en los documentos: 0 a 3 puntos
+- Adecuación a la realidad de la solución: 0 a 2 puntos
 
-1. **Memoria descriptiva del proyecto**:
-   - Se requiere la presentación de una memoria técnica que incluya un análisis detallado del estado de las obras existentes.
-   - La memoria debe abordar las bondades y defectos de las estructuras actuales, así como las reparaciones necesarias.
-
-2. **Metodología de trabajo**:
-   - Exposición clara sobre la metodología que se aplicará durante la ejecución del proyecto.
-   - Detallar los procesos a seguir para asegurar la calidad y eficiencia en la obra.
-
-3. **Plan de trabajo y programación**:
-   - Presentar un plan de trabajo que contemple una planificación cronológica de las actividades a realizar.
-   - Incluir un calendario con hitos relevantes y tiempos estimados para cada fase del proyecto.
-
-4. **Medios y recursos empleados**:
-   - Descripción de los medios auxiliares y equipos que se emplearán durante la ejecución de las obras.
-   - Justificación del uso de recursos humanos y técnicos necesarios.
-
-5. **Control de calidad**:
-   - Establecer sistemas para garantizar el control de calidad de los trabajos ejecutados.
-   - Propuestas para asegurar el cumplimiento de las normas y estándares establecidos en el pliego.
-
-6. **Impacto ambiental y medidas correctivas**:
-   - Evaluación del impacto ambiental que pudiera generarse con la ejecución del proyecto.
-   - Presentar medidas correctivas o mitigadoras a implementar durante y después de los trabajos.
-
-7. **Experiencia previa**:
-   - Justificar la experiencia acumulada en obras similares, incluyendo referencias y resultados obtenidos.
-
-8. **Capacitación del personal**:
-   - Detallar cualquier plan de capacitación previsto para el personal involucrado en el proyecto.
-
-Estos criterios deben ser abordados en la propuesta técnica del licitador, pues la valoración positiva será fundamental para la adjudicación del contrato.
+2. OFERTA ECONÓMICA Y CRITERIOS VALORABLES MEDIANTE FÓRMULAS MATEMÁTICAS (SOBRE N*):
+   - MÁXIMO 74 PUNTOS
+   - PRECIO OFERTADO: MÁXIMO 40 PUNTOS
 ----------------------------------------------------------------------------------------------
-Crit_bin | Busca y extrae cualquier sección del documento que describa criterios de oferta técnica. Asegúrate de que el texto esté organizado en formato de lista o puntos numerados. | NO SE PUDO ENCONTRAR RESPUESTA
+Ofer_tec | Busca y extrae cualquier sección del texto que describa criterios de oferta técnica. Asegúrate de que el texto esté organizado en formato de lista o puntos numerados, estos DEBEN contener el puntaje de cada uno que se encuentra en el texto. | 1.2. AUSCULTACIÓN, ESTUDIOS Y ENSAYOS PREVIOS DE 0 A 5 PUNTOS  
+   - Mejoras respecto al documento técnico base de 0 a 2 puntos  
+   - Justificación de la necesidad de 0 a 2 puntos  
+   - Concreción y detalle de los trabajos previos de 0 a 1 puntos  
+
+1.3. MEDIOS AUXILIARES OFERTADOS DE 0 A 2 PUNTOS  
+
+2.2 ACREDITACIÓN DE CERTIFICADOS ISO (Máximo 6 puntos)  
+   - Certificado del Sistema de Gestión de la Calidad ISO 9001 o equivalente, particularizado según se indica en las aclaraciones: 2 puntos  
+   - Certificado del Sistema de Gestión Ambiental ISO 14001 o equivalente, particularizado según se indica en las aclaraciones: 2 puntos  
+   - Certificado del Sistema de Gestión Seguridad y Salud: 2 puntos  
+
+- Auscultación, estudios y ensayos previos a realizar antes de la oferta: 5 puntos  
+- Medios auxiliares ofertados: 2 puntos  
+- Resumen del PAC ofertado, a realizar por el Contratista: 2 puntos  
+   - Referencia concreta a las partidas establecidas del PCAP: 0 a 1 puntos  
+   - Concreción en la exposición de los documentos: 0 a 1 puntos  
+   - Coherencia entre documentos: 0 a 3 puntos  
+   - Calidad y grado de definición de la solución en los documentos: 0 a 3 puntos  
+   - Adecuación a la realidad de la solución: 0 a 2 puntos  
 ----------------------------------------------------------------------------------------------
-Ofer_ec | Busca y extrae cualquier sección del documento que describa criterios automáticos de la oferta económica. La sección debe incluir menciones a 'POR FÓRMULAS' con la asignación de un porcentaje total, desglosado en componentes como 'Precio', 'Otros criterios', y consideraciones sobre incrementos de plazo. Asegúrate de que el texto esté organizado en un formato de lista o puntos claramente definidos. | **Criterios automáticos de la oferta económica (por fórmulas)**
-
-1. **Precio (máximo 40 puntos)**:
-   - Se valorará cada oferta económica atendiendo al precio ofertado. 
-   - La oferta sin baja recibe 0 puntos.
-   - La oferta correspondiente al precio más bajo recibirá 40 puntos.
-
-2. **Otros criterios (máximo 34 puntos)**:
-   - Certificados del Sistema de Gestión ISO: hasta 6 puntos.
-   - Experiencia del personal adscrito al contrato: hasta 10 puntos.
-   - Características sociales del contrato: hasta 6 puntos.
-   - Criterios medioambientales: hasta 6 puntos.
-  
-3. **Control de calidad (máximo 2 puntos)**:
-   - Se valorará el porcentaje del presupuesto de ejecución material que el licitador se compromete a destinar al control de calidad.
-   - Ofertas que superen el 3% recibirán la puntuación máxima de 2 puntos.
-   - Ofertas entre el 2% y el 3% se evaluarán interpolando linealmente, redondeándose a tres decimales.
-
-4. **Valoración total de la oferta**:
-   - La valoración total de la oferta se obtendrá sumando la puntuación correspondiente a los distintos criterios económicos establecidos.
-
-Esta estructura permite una evaluación cuantitativa y objetiva de las ofertas económicas recibidas, asegurando la transparencia en el proceso de adjudicación.
+Crit_bin | Nada | NO SE PUDO ENCONTRAR RESPUESTA
 ----------------------------------------------------------------------------------------------
-Form_pago | Busca y extrae cualquier sección del documento que describa la forma de pago. | **14. RÉGIMEN DE PAGO**
+Ofer_ec | Busca y extrae cualquier sección del texto que describa criterios automáticos de la oferta económica. La sección debe incluir menciones a 'POR FÓRMULAS' con la asignación de un porcentaje total, desglosado en componentes como 'Precio', 'Otros criterios', y consideraciones sobre incrementos de plazo. Asegúrate de que el texto esté organizado en un formato de lista o puntos claramente definidos. | - OFERTA ECONÓMICA Y CRITERIOS VALORABLES MEDIANTE FÓRMULAS MATEMÁTICAS (SOBRE N*3): MÁXIMO 74 PUNTOS
+  - PRECIO OFERTADO (MÁXIMO 40 PUNTOS)
+  - Otros criterios valorables mediante fórmulas: 
+    - Consideraciones sobre incrementos de plazo: se valorará el cumplimiento de los plazos establecidos según un porcentaje adicional.
+----------------------------------------------------------------------------------------------
+Form_pago | Busca y extrae cualquier sección del texto que describa la forma de pago, se conciso con tu respuesta. | A los efectos de pago, la Administración expedirá mensualmente, en los primeros diez (10) días siguientes al mes que correspondan, las certificaciones que comprendan la obra ejecutada durante dicho periodo de tiempo. El contratista dispondrá de un plazo de diez (10) días hábiles, contados a partir de la recepción de la relación valorada que debe remitirle el facultativo director de la obra.  
+Pago del precio: Pagos parciales  
+Periodicidad de las certificaciones: Según la cláusula n* 28 del PCAP  
+Abonos a cuenta por operaciones preparatorias/valoraciones parciales: Sí  
+Condiciones para recibir abono a cuenta: Se podrán tramitar abonos a cuenta por operaciones.
+----------------------------------------------------------------------------------------------
+ecido en el Anexo n* 5 del PCAP.
 
-1. **Pago del precio**:
-   - Los pagos se realizarán mediante abonos parciales.
+4. Características sociales del contrato: Máximo 6 puntos
 
-2. **Periodicidad de las certificaciones**:
-   - Las certificaciones se expedirá mensualmente, en los primeros diez (10) días siguientes al mes correspondiente.
+5. Plazo de entrega o ejecución: Máximo 2 puntos
+   - Valorado según lo establecido en el Anexo n* 5 del PCAP.
 
-3. **Abonos a cuenta por operaciones preparatorias/valoraciones parciales**:
-   - Se podrán tramitar abonos a cuenta por operaciones preparatorias realizadas, previa petición escrita del contratista, por materiales acopiados, instalaciones y equipos adscritos a la obra.
-   - Esta gestión se realizará siguiendo las garantías que determinan los artículos 155, 156 y 157 del RGLCAP.
+6. Plazo de garantía: Máximo 2 puntos
+   - Valorado según lo establecido en el Anexo n* 5 del PCAP.
 
-4. **Certificaciones**:
-   - El contratista dispone de un plazo de diez (10) días hábiles desde la recepción de la relación valorada para prestar su conformidad o formular reparos.
-   - Transcurrido este plazo sin alegaciones, se considerará otorgada la conformidad a la relación valorada.
+7. Control de calidad: Máximo 2 puntos
+   - Valorado según lo establecido en el Anexo n* 5 del PCAP.
 
-5. **Abonos resultantes de certificaciones**:
-   - Los abonos al contratista tienen el concepto de pagos a cuenta, y están sujetos a rectificaciones y variaciones que se produzcan en la medición final.
-   - Estos pagos no implican aprobación y recepción definitiva de las obras comprendidas en las certificaciones.
+Total máximo de la oferta económica: 74 puntos.
+----------------------------------------------------------------------------------------------
+Form_pago | Busca y extrae cualquier sección del texto que describa la forma de pago, se conciso con tu respuesta. | RÉGIMEN DE PAGO
 
-6. **Regulación de pagos**:
-   - Los pagos al contratista se regirán según lo establecido en el artículo 198 de la LCSP.
+1. Pago del precio: Pagos parciales.
+2. Periodicidad de las certificaciones: Según la cláusula n* 28 del PCAP.
+3. Abonos a cuenta por operaciones preparatorias/valoraciones parciales: Sí. 
+4. Condiciones para recibir abono a cuenta: Se podrán tramitar abonos a cuenta por operaciones ejecutadas conforme al proyecto aprobado.
+----------------------------------------------------------------------------------------------
+ando una comparación equitativa entre los diferentes licitadores.
+----------------------------------------------------------------------------------------------
+Form_pago | Busca y extrae cualquier sección del documento que describa la forma de pago, se conciso con tu respuesta. | ADIF-AV abonará al contratista el precio dentro de los treinta (30) días siguientes a la aprobación de las certificaciones.
+----------------------------------------------------------------------------------------------
+al, desglosado en componentes como 'Precio', 'Otros criterios', y consideraciones sobre incrementos de plazo. Asegúrate de que el texto esté organizado en un formato de lista o puntos claramente definidos. | **Criterios Automáticos de la Oferta Económica:**
+
+1. **Criterios evaluables mediante fórmulas. Ponderación (PCCF):** 51%
+   - **Precio:** 49%
+   - **Otros criterios:** 2%
+
+2. **Valoración de las Ofertas:**
+   - Se calculará la puntuación económica de cada oferta (PEj) por interpolación lineal entre 0 puntos para una oferta igual a la oferta tipo (OEPBL) y PEmax para la oferta más económica (OEmín).
+
+3. **Consideraciones sobre el incremento de plazo:**
+   - Se indicará en el pliego cómo se valorarán los incrementos de plazo en relación con el precio, que podrá afectar directamente la puntuación económica de las ofertas presentadas.
+
+4. **Puntuación máxima asignada a la oferta económica mínima (OEmín):**
+   - Se asignará la puntuación máxima establecida en el apartado 11 a la oferta económica mínima que no haya sido rechazada.
+   - Se asignarán 0 puntos a la oferta tipo de la Administración (OEPBL).
+----------------------------------------------------------------------------------------------
+Form_pago | Busca y extrae cualquier sección del documento que describa la forma de pago, se conciso con tu respuesta. | **Forma de Pago:**
+
+ADIF-AV abonará al contratista el precio dentro de los treinta (30) días siguientes a la aprobación de las certificaciones. En cuanto a las condiciones y requisitos para el abono al contratista, será de aplicación lo dispuesto en el Anexo de Condiciones Generales.
+----------------------------------------------------------------------------------------------
+mula Puntuación:
+
+1. **Memoria técnica y programa de trabajos**: NO - 23 puntos
+2. **Calidad**: NO - 7 puntos
+3. **Programa de Actuaciones Medioambientales**: NO - 7 puntos
+4. **Tecnología e I+D+i**: NO - 2 puntos
+5. **Propuesta de metodología BIM**: NO - 5 puntos
+6. **Análisis de Riesgos**: NO - 5 puntos
+7. **Experiencia del equipo humano asignado**: Sí - 2 puntos
+
+Total Criterios Técnicos (A): 51 puntos
+----------------------------------------------------------------------------------------------
+Crit_bin | Busca y extrae cualquier sección del documento que describa criterios de oferta técnica. Asegúrate de que el texto esté organizado en formato de lista o puntos numerados, estos DEBEN contener el puntaje de cada uno que se encuentra en el documento. | NO SE PUDO ENCONTRAR RESPUESTA
+----------------------------------------------------------------------------------------------
+Ofer_ec | Busca y extrae cualquier sección del documento que describa criterios automáticos de la oferta económica. La sección debe incluir menciones a 'POR FÓRMULAS' con la asignación de un porcentaje total, desglosado en componentes como 'Precio', 'Otros criterios', y consideraciones sobre incrementos de plazo. Asegúrate de que el texto esté organizado en un formato de lista o puntos claramente definidos. | Criterios económicos (B):
+- **Precio**: Sí - 49% 
+
+Total Criterios Económicos (B): 49%
+
+Las puntuaciones de la proposición económica se calcularán conforme a los criterios establecidos en el apartado 11 del cuadro de características, y serán evaluadas mediante fórmulas. 
+
+Criterios automáticos de la oferta económica:
+- **Criterios evaluables mediante juicio de valor**: Ponderación (POV): 49%
+- **Criterios cuantificables mediante fórmulas**: Ponderación (PCCF): 51%
+----------------------------------------------------------------------------------------------
+Form_pago | Busca y extrae cualquier sección del documento que describa la forma de pago. | 4.3. FORMA DE PAGO:
+
+ADIF-AV abonará al contratista el precio dentro de los treinta (30) días siguientes a la aprobación de las certificaciones, en aplicación de lo dispuesto en el artículo 4.3 de la Ley 3/2004, de 29 de diciembre, por la que se establecen medidas de lucha contra la morosidad en las operaciones comerciales, modificada por la Ley 11/2013, de 26 de julio.
+
+ADIF-AV tendrá la facultad de retener de los pagos que le correspondan al CONTRATISTA, la cantidad necesaria para garantizar el cobro de las deudas que mantuvieran con la entidad, de acuerdo con el correspondiente procedimiento.
+
+Cuando el contratista adjudicatario ostente un crédito documentado en factura frente a ADIF-AV y se verifique que aquel ostenta deuda derivada de la misma relación jurídica a favor de ADIF-AV que, habiendo sido facturada, no haya sido abonada transcurrido un mes desde su vencimiento, del importe total de su crédito se procederá a retener su cantidad.
+
+Cuando se produzca demora en la ejecución de la prestación por parte del contratista, el órgano de contratación podrá conceder una ampliación del plazo de ejecución, sin perjuicio de las penalidades que en su caso procedan.
+----------------------------------------------------------------------------------------------
+la LCSP.
 
 Esta sección establece claramente las condiciones y plazos para los pagos al contratista a lo largo del desarrollo del proyecto.
 ----------------------------------------------------------------------------------------------
